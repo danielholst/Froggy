@@ -14,7 +14,7 @@ public class waterscript : MonoBehaviour {
 	void Update () {
 		transform.position += movementVec* Time.deltaTime;
 
-		if (transform.position.y < -8f) {
+		if (transform.position.y < -10f) {
 			transform.position = new Vector3 (0f, 14f, 0f);
 		}
 	}

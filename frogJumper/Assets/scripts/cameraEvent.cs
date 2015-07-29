@@ -8,24 +8,15 @@ using System.Collections;
 public class cameraEvent : MonoBehaviour {
 
 	public GameObject EventHandler;
-
-	void Start(){
-
-	}
-
+	
 	void Update() {
 
 
-		if (!(EventHandler.GetComponent<eventHandler>().startGame)) {
+		if (!(EventHandler.GetComponent<holdTime>().startGame)) {
 		
 			transform.position -= new Vector3(0f, 0.05f, 0f);
-
-
-			print("TRansform = " + transform.position);
+//			print("TRansform = " + transform.position);
 		
 		}
-
-
 	}
-	
 }

@@ -18,7 +18,7 @@ public class leafScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (EventHandler.GetComponent<eventHandler> ().startGame) {
+		if (EventHandler.GetComponent<holdTime> ().startGame) {
 			transform.position += movementVec * Time.deltaTime;
 			transform.Rotate (new Vector3 (0f, 0f, rotationspeed));
 

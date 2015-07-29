@@ -5,6 +5,7 @@ public class movementScript : MonoBehaviour {
 
 	private Vector2 forceVec;
 	public Rigidbody2D body;
+	public GameObject EventHandler;
 
 	// Use this for initialization
 	void Start () {
@@ -15,26 +16,25 @@ public class movementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		print ("velocity = " + body.velocity.x);
-		if (Input.GetKey ("left")) {
-			if(body.velocity.x > 2f)
-				body.velocity = body.velocity - 0.1f*body.velocity;
-			else {
-				//add force on frog to the left
-				body.AddForce (-forceVec);
+		if (EventHandler.GetComponent<holdTime> ().startGame) {
+			if (Input.GetKey ("left")) {
+				if (body.velocity.x > 2f)
+					body.velocity = body.velocity - 0.1f * body.velocity;
+				else {
+					//add force on frog to the left
+					body.AddForce (-forceVec);
+				}
+			} else if (Input.GetKey ("right")) {
+				if (body.velocity.x < -2f)
+					body.velocity = body.velocity - 0.1f * body.velocity;
+				else {
+					//add force on frog to the right
+					body.AddForce (forceVec);
+				}
+			} else {
+				//stabilize frog when no force is added
+				body.velocity = body.velocity - 0.1f * body.velocity;
 			}
-		}
-		else if (Input.GetKey ("right")) {
-			if( body.velocity.x < -2f)
-				body.velocity = body.velocity - 0.1f*body.velocity;
-			else {
-			//add force on frog to the right
-			body.AddForce (forceVec);
-			}
-		} 
-		else {
-			//stabilize frog when no force is added
-			body.velocity = body.velocity - 0.1f*body.velocity;
 		}
 	}
 

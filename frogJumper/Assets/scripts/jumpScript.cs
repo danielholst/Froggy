@@ -21,7 +21,7 @@ public class jumpScript : MonoBehaviour {
 	void Update () {
 
 		
-		if (EventHandler.GetComponent<eventHandler>().startGame) {
+		if (EventHandler.GetComponent<holdTime>().startGame) {
 			//set interval, differ between max and min
 			if (scale > 2.0f) 
 				speed = -1.3f;

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class lifeScript : MonoBehaviour {
 
+	public SpriteRenderer sprender;
+	public int level;
 	public Rigidbody2D leaf1;
 	public Rigidbody2D leaf2;
 	public Rigidbody2D leaf3;
@@ -45,11 +47,19 @@ public class lifeScript : MonoBehaviour {
 			}
 			//frog is not on any leaf
 			else {
-
+				//make frog dissapear before restarting 	TODO
+				sprender.enabled=false;
+				resetLevel();
 				print ("MISSSSS" );
 
 			}
 
 		}
+	}
+
+	void resetLevel()
+	{
+		print ("reloading level");
+		Application.LoadLevel (level+1);
 	}
 }

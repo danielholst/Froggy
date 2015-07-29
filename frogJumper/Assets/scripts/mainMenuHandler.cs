@@ -3,19 +3,23 @@ using System.Collections;
 
 public class mainMenuHandler : MonoBehaviour {
 	
-	public Texture2D icon;
+	public Texture2D startButton;
+	public Texture2D levelButton;
 	
 	void OnGUI () {
-		if (GUI.Button (new Rect (10,10, 100, 50), icon)) {
+
+		GUI.backgroundColor = Color.clear;
+
+		if (GUI.Button (new Rect (400,100, 100, 50), startButton)) {
 			print ("you clicked the icon");
 			//start game
-			Application.LoadLevel(1);
+			Application.LoadLevel(2);
 
 		}
 		
-		if (GUI.Button (new Rect (10,70, 100, 20), "This is text")) {
+		if (GUI.Button (new Rect (400,170, 100, 20), levelButton)) {
 			print ("you clicked the text button");
-			Application.LoadLevel(2);
+			Application.LoadLevel(1);
 		}
 	}
 	

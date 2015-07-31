@@ -47,11 +47,7 @@ public class lifeScript : MonoBehaviour {
 			}
 			//frog is not on any leaf
 			else {
-				//make frog dissapear before restarting 	TODO
-				sprender.enabled=false;
 				resetLevel();
-				print ("MISSSSS" );
-
 			}
 
 		}
@@ -59,6 +55,8 @@ public class lifeScript : MonoBehaviour {
 
 	void resetLevel()
 	{
+		print ("MISSSSS");
+		sprender.enabled=false;
 		print ("reloading level");
 		Application.LoadLevel (level+1);
 	}

@@ -14,7 +14,7 @@ public class cameraEvent : MonoBehaviour {
 
 		if (!(EventHandler.GetComponent<holdTime>().startGame)) {
 		
-			transform.position -= new Vector3(0f, 0.05f, 0f);
+			transform.position -= new Vector3(0f, 0.04f, 0f);
 //			print("TRansform = " + transform.position);
 		
 		}

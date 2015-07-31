@@ -24,27 +24,4 @@ public class showLevel : MonoBehaviour {
 
 
 	}
-
-//	function Start(){ 
-//		guiText.material.color.a = 0;
-//		yield WaitForSeconds(2);
-//		FadeIn();
-//	}  
-//	function FadeIn(){
-//		while (guiText.material.color.a < 1){
-//			guiText.material.color.a += 0.1 * Time.deltaTime * 2;
-//			yield;    
-//		}  
-//		yield WaitForSeconds(2);
-//		FadeOut();  
-//	}
-//	
-//	function FadeOut(){
-//		while (guiText.material.color.a > 0){
-//			guiText.material.color.a -= 0.1 * Time.deltaTime * 2;
-//			yield;    
-//		}    
-//		Destroy (gameObject);
-//	}
-
 }

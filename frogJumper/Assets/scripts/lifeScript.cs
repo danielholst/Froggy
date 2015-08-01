@@ -1,6 +1,10 @@
 ﻿ using UnityEngine;
 using System.Collections;
 
+/**
+ * Function to handle if the frog lands on leaves or in the water 
+ **/
+
 public class lifeScript : MonoBehaviour {
 
 	public SpriteRenderer sprender;
@@ -26,24 +30,24 @@ public class lifeScript : MonoBehaviour {
 			//check if frog is on leaf 1
 			if (frogPosition.x < (leaf1.position.x + 1f) && frogPosition.x > (leaf1.position.x - 1f) && frogPosition.y < (leaf1.position.y + 1f) && frogPosition.y > (leaf1.position.y - 1f)) {
 
-				print ("on leaf 1");
+				//print ("on leaf 1");
 			}
 
 			//check if frog is on leaf 2
 			else if (frogPosition.x < (leaf2.position.x + 1f) && frogPosition.x > (leaf2.position.x - 1f) && frogPosition.y < (leaf2.position.y + 1f) && frogPosition.y > (leaf2.position.y - 1f)) {
 			
-				print ("on leaf 2");
+				//print ("on leaf 2");
 			}
 
 			//check if frog is on leaf 3
 			else if (frogPosition.x < (leaf3.position.x + 1f) && frogPosition.x > (leaf3.position.x - 1f) && frogPosition.y < (leaf3.position.y + 1f) && frogPosition.y > (leaf3.position.y - 1f)) {
 			
-				print ("on leaf 3");
+				//print ("on leaf 3");
 			}
 			//check if frog is on leaf 4
 			else if (frogPosition.x < (leaf4.position.x + 1f) && frogPosition.x > (leaf4.position.x - 1f) && frogPosition.y < (leaf4.position.y + 1f) && frogPosition.y > (leaf4.position.y - 1f)) {
 			
-				print ("on leaf 4");
+				//print ("on leaf 4");
 			}
 			//frog is not on any leaf
 			else {

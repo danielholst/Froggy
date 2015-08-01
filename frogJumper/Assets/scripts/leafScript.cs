@@ -7,12 +7,14 @@ public class leafScript : MonoBehaviour {
 	public Vector2 startPos;
 	private Vector3 movementVec;
 	public GameObject EventHandler;
+	private float prevSpawn;
 
 	// Use this for initialization
 	void Start () {
 
 		movementVec = new Vector3 (0f, -2.54f, 0f);
 		rotationspeed = 0.1f;
+		prevSpawn = 0f;
 	}
 	
 	// Update is called once per frame
@@ -23,21 +25,34 @@ public class leafScript : MonoBehaviour {
 			transform.Rotate (new Vector3 (0f, 0f, rotationspeed));
 
 			if (transform.position.y < -5f) {
-				respawn ();
+				prevSpawn = respawn (prevSpawn);
 			}
 
 		}
 	}
 
-	void respawn() {
-
+	float respawn(float prevSpawn) {
 
 		//randomize start position
-		transform.position = new Vector3 (Random.Range(-6,6), 11f, 0f);
+		float randomNr = randomFunction (prevSpawn);
+		transform.position = new Vector3 (randomNr, 11f, 0f);
 
 		//randomize start rotation
 		transform.rotation = Quaternion.Euler (0f, 0f,Random.Range(1,360)); // 0f,1f, Random.Range(1, 360));
+
+		return randomNr;
 	}
 
+	//function to get a random position without making it spawn at same place as previous leaf
+	float randomFunction (float prevSpawn) {
+		int randomNr = Random.Range (-6, 6);
+		while (randomNr >= prevSpawn -1 && randomNr <= prevSpawn +1) {
+			print ("random nr = " + randomNr);
+			randomNr = Random.Range (-6, 6);
+		}
+
+
+		return randomNr;
+	}
 
 }

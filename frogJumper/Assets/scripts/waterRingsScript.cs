@@ -11,7 +11,7 @@ public class waterRingsScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		scale = 0.005f;
+		scale = 0.1f;
 		growing = false;
 		colorLeaf = leaf.GetComponent<SpriteRenderer>().color;
 		colorWaterRing = GetComponent<SpriteRenderer> ().color;
@@ -34,7 +34,7 @@ public class waterRingsScript : MonoBehaviour {
 
 			if(scale > 2.5f) {
 				growing = false;
-				scale = 0.005f;
+				scale = 0.1f;
 				colorWaterRing.a = 1f;
 				colorLeaf.a = 1f;
 			}

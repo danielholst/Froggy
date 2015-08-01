@@ -14,7 +14,7 @@ public class holdTime : MonoBehaviour {
 		startGame = false;
 		// Start function WaitAndPrint as a coroutine
 		yield return StartCoroutine("WaitAndPrint");
-		print("Done " + Time.time);
+//		print("Done " + Time.time);
 	}
 
 	IEnumerator WaitAndPrint()

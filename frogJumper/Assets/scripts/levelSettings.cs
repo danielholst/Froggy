@@ -7,6 +7,7 @@ using System.Collections;
 
 public class levelSettings : MonoBehaviour {
 
+	public GameObject fader;
 	public GameObject holdTime;
 	public int gameSpeed;
 	public int level;
@@ -29,6 +30,10 @@ public class levelSettings : MonoBehaviour {
 			if (!(timer <= 0f)) {
 
 				timer -= Time.deltaTime;
+				if(timer <=1f) {
+					fader.GetComponent<faderScript>().EndScene();
+				}
+
 			} else {
 				//reached end of level
 				//fade out level

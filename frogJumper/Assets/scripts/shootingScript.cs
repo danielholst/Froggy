@@ -8,9 +8,9 @@ using System.Collections;
 public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
-	private int shootingSpeed;
+	private float shootingSpeed;
 	private int nrOfShots;
-	private Rigidbody instantiatedProjectile;
+	private GameObject instantiatedProjectile;
 	private bool shooting;
 	private float shotPos;
 
@@ -18,7 +18,7 @@ public class shootingScript : MonoBehaviour {
 	void Start () {
 
 		projectile.GetComponent<Renderer> ().enabled = false;
-		shootingSpeed = 40;
+		shootingSpeed = 0.2f;
 		nrOfShots = 20;
 		shooting = false;
 		shotPos = 0f;
@@ -27,17 +27,17 @@ public class shootingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey ("space")) {
+		if (Input.GetKeyUp ("space") && !(shooting)) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
 //			print ("Shooting!");
-			instantiatedProjectile = Instantiate(projectile,transform.position,transform.rotation)as Rigidbody;
+			instantiatedProjectile = Instantiate(projectile,transform.position,transform.rotation)as GameObject;
 			shooting = true;
 		}
 
 		if (shooting) {
 			instantiatedProjectile.transform.position += new Vector3(0f,shootingSpeed, 0f);
-			if(instantiatedProjectile.transform.position.y > 15) {
+			if(instantiatedProjectile.transform.position.y > 8) {
 				Destroy(instantiatedProjectile);
 				shooting = false;
 			}

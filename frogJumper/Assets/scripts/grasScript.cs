@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class grasScript : MonoBehaviour {
-	
+
+	public bool isASign;
 	private Vector3 movementVec;
 	
 	// Use this for initialization
@@ -14,7 +15,7 @@ public class grasScript : MonoBehaviour {
 	void Update () {
 		transform.position += movementVec* Time.deltaTime;
 		
-		if (transform.position.y < -10f) {
+		if (transform.position.y < -10f && !isASign) {
 			transform.position = new Vector3 (0f, 14f, 0f);
 		}
 	}

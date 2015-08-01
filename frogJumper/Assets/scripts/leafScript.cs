@@ -47,7 +47,6 @@ public class leafScript : MonoBehaviour {
 	float randomFunction (float prevSpawn) {
 		int randomNr = Random.Range (-6, 6);
 		while (randomNr >= prevSpawn -1 && randomNr <= prevSpawn +1) {
-			print ("random nr = " + randomNr);
 			randomNr = Random.Range (-6, 6);
 		}
 

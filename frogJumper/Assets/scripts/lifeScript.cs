@@ -14,15 +14,30 @@ public class lifeScript : MonoBehaviour {
 	public Rigidbody2D leaf3;
 	public Rigidbody2D leaf4;
 	private Vector3 frogPosition;
+	private Color frogColor;
+	public bool sinking;
 	// Use this for initialization
 	void Start () {
 
 		frogPosition = transform.position;
+		frogColor = GetComponent<SpriteRenderer> ().color;
+		sinking = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		GetComponent<SpriteRenderer> ().color = frogColor;
+		if (sinking) {
+			if(frogColor.a == 1f)
+				frogColor.a = 0.8f;
+
+			frogColor.a -= 0.01f;
+			if (frogColor.a <= 0.1f) {
+				print ("reloading level");
+				Application.LoadLevel (level+1);
+			}
+		}
 		frogPosition = transform.position;
 
 		if (transform.localScale.x >= 0.39f && transform.localScale.x <= 0.41f) {
@@ -51,7 +66,8 @@ public class lifeScript : MonoBehaviour {
 			}
 			//frog is not on any leaf
 			else {
-				resetLevel();
+				sinking = true;
+//				resetLevel();
 			}
 
 		}
@@ -60,8 +76,7 @@ public class lifeScript : MonoBehaviour {
 	void resetLevel()
 	{
 		print ("MISSSSS");
-		sprender.enabled=false;
-		print ("reloading level");
-		Application.LoadLevel (level+1);
+//		sprender.enabled=false;
+
 	}
 }

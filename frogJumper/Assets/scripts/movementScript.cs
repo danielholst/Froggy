@@ -17,14 +17,14 @@ public class movementScript : MonoBehaviour {
 	void Update () {
 
 		if (EventHandler.GetComponent<holdTime> ().startGame) {
-			if (Input.GetKey ("left")) {
+			if (Input.GetKey ("left") && !GetComponent<lifeScript>().sinking) {
 				if (body.velocity.x > 2f)
 					body.velocity = body.velocity - 0.1f * body.velocity;
 				else {
 					//add force on frog to the left
 					body.AddForce (-forceVec);
 				}
-			} else if (Input.GetKey ("right")) {
+			} else if (Input.GetKey ("right") && !GetComponent<lifeScript>().sinking) {
 				if (body.velocity.x < -2f)
 					body.velocity = body.velocity - 0.1f * body.velocity;
 				else {

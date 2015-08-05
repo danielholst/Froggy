@@ -4,6 +4,7 @@ using System.Collections;
 public class waterRingsScript : MonoBehaviour {
 
 	public GameObject leaf;
+	public GameObject frog;
 	private float scale;
 	private bool growing;
 	private Color colorLeaf;
@@ -14,7 +15,7 @@ public class waterRingsScript : MonoBehaviour {
 		scale = 0.5f;
 		growing = false;
 		colorLeaf = leaf.GetComponent<SpriteRenderer>().color;
-		colorWaterRing = GetComponent<SpriteRenderer> ().color;
+		colorWaterRing = GetComponent<SpriteRenderer>().color;
 	}
 	
 	// Update is called once per frame
@@ -40,7 +41,8 @@ public class waterRingsScript : MonoBehaviour {
 		}
 
 		//if leaf position.y = 0 (when frog lands on leaf) the scaling starts of the water rings
-		if (leaf.transform.position.y >= 0.2f && leaf.transform.position.y <= 0.3f) {
+		if (leaf.transform.position.y >= 0.2f && leaf.transform.position.y <= 0.3f 
+		    && frog.transform.position.x < (leaf.transform.position.x + 1f) && frog.transform.position.x > (leaf.transform.position.x - 1f)) {
 			growing = true;
 		}
 	}

@@ -19,21 +19,10 @@ public class leafScript : MonoBehaviour {
 		rotationspeed = 0.1f;
 		prevSpawn = 0f;
 		counter = 0;
-//		gun.GetComponent<SpriteRenderer> ().enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-//		//Spawn of gun texture in the end of level 1
-//		if (counter == 5 && level == 1) {
-//			gun.GetComponent<SpriteRenderer>().enabled = true;
-//
-//		}
-//
-//		if (gun.GetComponent<SpriteRenderer> ().enabled == true && transform.position.y < 0.1f) {
-//			gun.GetComponent<SpriteRenderer> ().enabled = false;
-//		}
 
 		if (EventHandler.GetComponent<holdTime> ().startGame) {
 			transform.position += movementVec * Time.deltaTime;

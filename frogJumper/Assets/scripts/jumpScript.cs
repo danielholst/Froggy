@@ -52,7 +52,7 @@ public class jumpScript : MonoBehaviour {
 		}
 
 		if (growing) {
-			scaleWaterRing += 0.02f;
+			scaleWaterRing += 0.01f;
 			colorWaterRing.a -= 0.01f;
 			
 			if(scaleWaterRing > 2.5f) {

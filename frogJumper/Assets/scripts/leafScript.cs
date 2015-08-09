@@ -7,7 +7,6 @@ public class leafScript : MonoBehaviour {
 	public Vector2 startPos;
 	private Vector3 movementVec;
 	public GameObject EventHandler;
-//	public GameObject gun;
 	public int level;
 	private float prevSpawn;
 	public int counter;

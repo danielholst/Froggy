@@ -22,12 +22,13 @@ public class shootingScript : MonoBehaviour {
 		nrOfShots = 20;
 		shooting = false;
 		shotPos = 0f;
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyUp ("space") && !(shooting)) {
+		if (Input.GetKeyUp ("space") && !(shooting) && !GetComponent<lifeScript>().sinking) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
 //			print ("Shooting!");

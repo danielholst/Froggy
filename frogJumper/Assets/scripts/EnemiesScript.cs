@@ -40,7 +40,7 @@ public class EnemiesScript : MonoBehaviour {
 
 		//makes the enemy move down to the top of the screen after being spawned
 		if (enemySpawned1) {
-			if (enemy.transform.position.y > 6f)
+			if (enemy.gameObject != null && enemy.transform.position.y > 6f)
 				enemy.transform.position -= movVec;
 		}
 

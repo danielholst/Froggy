@@ -8,58 +8,6 @@ using System.Collections.Generic;
 
 public class EnemiesScript : MonoBehaviour {
 
-
-	public class enemy 
-	{
-		private Vector3 movVec = new Vector3 (0f, 0.01f, 0f);
-		public GameObject typeOfEnemy;
-		public GameObject projectile;
-		private int healthOfEnemy;
-		private static Vector3 shootDirection;
-
-		public enemy()
-		{
-			typeOfEnemy = null;
-			healthOfEnemy = 0;
-
-		}
-
-		public enemy(GameObject type, int health)
-		{
-			typeOfEnemy = type;
-			healthOfEnemy = health;
-		}
-
-		//movement for the enemy so it moves to top of screen
-		public void movement()
-		{
-			if(typeOfEnemy.transform.position.y > 6f)
-			{
-				typeOfEnemy.transform.position -= movVec;
-			}
-		}
-
-		// create a projectile from the enemy flying towards the player
-		public void shoot(Vector3 playerPos, GameObject enemyProjectile)
-		{
-			projectile = Instantiate(enemyProjectile, typeOfEnemy.transform.position, typeOfEnemy.transform.rotation) as GameObject;
-			
-			//get vector towards frog
-			shootDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
-				                             playerPos.y - projectile.transform.position.y, 
-				   	         	             1f);
-		}
-
-		public void moveProjectile()
-		{
-			projectile.transform.position += shootDirection/70;
-
-			if (projectile.transform.position.y < -6f)
-				Destroy (projectile);
-		}
-	}
-
-
 	private enemy[] enemies;
 	public GameObject player;
 	public GameObject enemyProjectile;
@@ -67,18 +15,14 @@ public class EnemiesScript : MonoBehaviour {
 	public int level;
 	private float timer;
 	private float endTime;
-	private bool enemySpawned1;
-	private bool enemySpawned2;
 
 	// Use this for initialization
 	void Start () {
 
-		enemies = new enemy[5];
+		enemies = new enemy[5];;
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
 		}
-		enemySpawned1 = false;
-		enemySpawned2 = false;
 
 		//set time of the level
 		if (level == 2) {
@@ -118,17 +62,15 @@ public class EnemiesScript : MonoBehaviour {
 	private void level2(float time) {
 
 		//spawn of enemy after 5 seconds
-		if ((int)time == 5f && !enemySpawned1) {
+		if ((int)time == 5f && enemies[0].getSpawned() == false) {
 			print ("Spawn enemy after 5 sec ");
-			createSmallEnemy ();
-			enemySpawned1 = true;
+			createSmallEnemy (0);
 		}
 	
 		//spawn of enemy after 15 seconds
-		if ((int)time == 15f && !enemySpawned2) {
+		if ((int)time == 15f && enemies[1].getSpawned() == false ) {
 			print( "Spawn enemy after 15 sec ");
-			createSmallEnemy();
-			enemySpawned2 = true;
+			createSmallEnemy(1);
 		}
 	}
 
@@ -141,17 +83,84 @@ public class EnemiesScript : MonoBehaviour {
 
 
 	//create a new small enemy
-	private void createSmallEnemy() {
+	private void createSmallEnemy(int index) {
 	
 		GameObject enemyObject;
 		enemyObject = Instantiate (smallEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
-		int i = 0;
-		while (enemies[i] != null && i < 4)
-			i++;
+//		int i = 0;
+//		while (enemies[i] != null && i < 4)
+//			i++;
 
-		enemies [i] = new enemy (enemyObject, 1);
+		enemies [index] = new enemy (enemyObject, 1);
 	}
+
+
+	//class for enemy bugs
+	public class enemy 
+	{
+		private Vector3 movVec = new Vector3 (0f, 0.01f, 0f);
+		public GameObject typeOfEnemy;
+		public GameObject projectile;
+		private int healthOfEnemy;
+		private bool enemySpawned;
+		private static Vector3 shootDirection;
+		
+		public enemy()
+		{
+			typeOfEnemy = null;
+			healthOfEnemy = 0;
+			enemySpawned = false;
+			
+		}
+		
+		public enemy(GameObject type, int health)
+		{
+			typeOfEnemy = type;
+			healthOfEnemy = health;
+			enemySpawned = true;
+		}
+		
+		//movement for the enemy so it moves to top of screen
+		public void movement()
+		{
+			if(typeOfEnemy.transform.position.y > 6f)
+			{
+				typeOfEnemy.transform.position -= movVec;
+			}
+		}
+		
+		// create a projectile from the enemy flying towards the player
+		public void shoot(Vector3 playerPos, GameObject enemyProjectile)
+		{
+			projectile = Instantiate(enemyProjectile, typeOfEnemy.transform.position, typeOfEnemy.transform.rotation) as GameObject;
+			
+			//get vector towards frog
+			shootDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
+			                             playerPos.y - projectile.transform.position.y, 
+			                             1f);
+		}
+		
+		public void moveProjectile()
+		{
+			projectile.transform.position += shootDirection/70;
+			
+			if (projectile.transform.position.y < -6f)
+				Destroy (projectile);
+		}
+
+		public bool getSpawned()
+		{
+			return enemySpawned;
+		}
+
+		private void setSpawned(bool spawned)
+		{
+			enemySpawned = spawned;
+		}
+
+	}
+
 	
 }
 

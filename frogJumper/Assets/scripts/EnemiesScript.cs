@@ -40,14 +40,14 @@ public class EnemiesScript : MonoBehaviour {
 
 		for (int i = 0; i < enemies.Length; i++) {
 
-			if (enemies[i].typeOfEnemy != null) {
+			if (enemies[i].getEnemyObject() != null) {
 				enemies[i].movement();
 
-				if (enemies[i].typeOfEnemy.transform.position.y < 8f && enemies[i].projectile == null) {
+				if (enemies[i].getEnemyObject().transform.position.y < 8f && enemies[i].getEnemyProjectile() == null) {
 					enemies[i].shoot (player.transform.position, enemyProjectile);
 				}
 
-				if(enemies[i].projectile != null) {
+				if(enemies[i].getEnemyProjectile() != null) {
 					enemies[i].moveProjectile();
 				}
 			}
@@ -88,10 +88,6 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		enemyObject = Instantiate (smallEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
-//		int i = 0;
-//		while (enemies[i] != null && i < 4)
-//			i++;
-
 		enemies [index] = new enemy (enemyObject, 1);
 	}
 
@@ -100,11 +96,11 @@ public class EnemiesScript : MonoBehaviour {
 	public class enemy 
 	{
 		private Vector3 movVec = new Vector3 (0f, 0.01f, 0f);
-		public GameObject typeOfEnemy;
-		public GameObject projectile;
+		private GameObject typeOfEnemy;
+		private GameObject projectile;
 		private int healthOfEnemy;
 		private bool enemySpawned;
-		private static Vector3 shootDirection;
+		private Vector3 shootDirection;
 		
 		public enemy()
 		{
@@ -147,6 +143,21 @@ public class EnemiesScript : MonoBehaviour {
 			
 			if (projectile.transform.position.y < -6f)
 				Destroy (projectile);
+		}
+
+		public GameObject getEnemyObject()
+		{
+			return typeOfEnemy;
+		}
+
+		public GameObject getEnemyProjectile()
+		{
+			return projectile;
+		}
+
+		public int getEnemyHealth()
+		{
+			return healthOfEnemy;
 		}
 
 		public bool getSpawned()

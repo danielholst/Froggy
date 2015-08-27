@@ -13,7 +13,7 @@ public class levelSelection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (level == 1)
-			Application.LoadLevel (1);
+//		if (level == 1)
+//			Application.LoadLevel (1);
 	}
 }

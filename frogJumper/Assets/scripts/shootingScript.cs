@@ -31,8 +31,9 @@ public class shootingScript : MonoBehaviour {
 		if (Input.GetKeyUp ("space") && !(shooting) && !GetComponent<lifeScript>().sinking) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
+			Vector3 projectileSpawn = new Vector3(transform.position.x, transform.position.y+1f, 1f); 
 //			print ("Shooting!");
-			instantiatedProjectile = Instantiate(projectile,transform.position,transform.rotation)as GameObject;
+			instantiatedProjectile = Instantiate(projectile,projectileSpawn,transform.rotation)as GameObject;
 			shooting = true;
 		}
 

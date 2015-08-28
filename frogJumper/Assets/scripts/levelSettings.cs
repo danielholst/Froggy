@@ -19,6 +19,9 @@ public class levelSettings : MonoBehaviour {
 		//set time of the level
 		if (level == 1 || level == 2)
 			timer = 30f;
+
+		if (level == 3)
+			timer = 20f;
 	}
 	
 	// Update is called once per frame

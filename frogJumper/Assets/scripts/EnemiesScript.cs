@@ -29,6 +29,10 @@ public class EnemiesScript : MonoBehaviour {
 			timer = 0f;
 			endTime = 30f;
 		}
+		if(level == 3) {
+			timer = 0f;
+			endTime = 20f;
+		}
 	}
 	
 	// Update is called once per frame
@@ -38,6 +42,12 @@ public class EnemiesScript : MonoBehaviour {
 		if (timer != endTime) 
 			timer += Time.deltaTime;
 
+		//function for enemyManger of level 2
+		if(level == 2)
+			level2(timer);
+		if (level == 3)
+			level3 (timer);
+		
 		for (int i = 0; i < enemies.Length; i++) {
 
 			if (enemies[i].getEnemyObject() != null) {
@@ -52,11 +62,6 @@ public class EnemiesScript : MonoBehaviour {
 				}
 			}
 		}
-
-
-		//function for enemyManger of level 2
-		if(level == 2)
-			level2(timer);
 	}
 	
 	private void level2(float time) {
@@ -71,6 +76,23 @@ public class EnemiesScript : MonoBehaviour {
 		if ((int)time == 15f && enemies[1].getSpawned() == false ) {
 			print( "Spawn enemy after 15 sec ");
 			createSmallEnemy(1);
+		}
+	}
+
+	private void level3(float time) {
+		
+		//spawn of enemy after 5 seconds
+		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
+			print ("Spawn 2 enemies after 5 sec ");
+			createSmallEnemy (0);
+			createSmallEnemy (1);
+		}
+		
+		//spawn of enemy after 15 seconds
+		if ((int)time == 13f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false ) {
+			print( "Spawn 2 enemies after 13 sec ");
+			createSmallEnemy(2);
+			createSmallEnemy(3);
 		}
 	}
 

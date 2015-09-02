@@ -45,38 +45,30 @@ public class lifeScript : MonoBehaviour {
 			//check if frog is on leaf 1
 			if (frogPosition.x < (leaf1.position.x + 1f) && frogPosition.x > (leaf1.position.x - 1f) && frogPosition.y < (leaf1.position.y + 1f) && frogPosition.y > (leaf1.position.y - 1f)) {
 
-				//print ("on leaf 1");
+				//on leaf 1
 			}
 
 			//check if frog is on leaf 2
 			else if (frogPosition.x < (leaf2.position.x + 1f) && frogPosition.x > (leaf2.position.x - 1f) && frogPosition.y < (leaf2.position.y + 1f) && frogPosition.y > (leaf2.position.y - 1f)) {
 			
-				//print ("on leaf 2");
+				//on leaf 2
 			}
 
 			//check if frog is on leaf 3
 			else if (frogPosition.x < (leaf3.position.x + 1f) && frogPosition.x > (leaf3.position.x - 1f) && frogPosition.y < (leaf3.position.y + 1f) && frogPosition.y > (leaf3.position.y - 1f)) {
 			
-				//print ("on leaf 3");
+				//on leaf 3
 			}
 			//check if frog is on leaf 4
 			else if (frogPosition.x < (leaf4.position.x + 1f) && frogPosition.x > (leaf4.position.x - 1f) && frogPosition.y < (leaf4.position.y + 1f) && frogPosition.y > (leaf4.position.y - 1f)) {
-			
-				//print ("on leaf 4");
+				//on leaf 4
 			}
 			//frog is not on any leaf
 			else {
 				sinking = true;
-//				resetLevel();
 			}
 
 		}
 	}
-
-	void resetLevel()
-	{
-		print ("MISSSSS");
-//		sprender.enabled=false;
-
-	}
+	
 }

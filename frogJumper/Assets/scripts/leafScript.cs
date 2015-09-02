@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Class to handle the behavior of the leaves
+**/
+
 public class leafScript : MonoBehaviour {
 
 	private float rotationspeed;
@@ -35,6 +39,7 @@ public class leafScript : MonoBehaviour {
 		}
 	}
 
+	//Function to respawn the leaf at a random position
 	float respawn(float prevSpawn) {
 
 		//randomize start position

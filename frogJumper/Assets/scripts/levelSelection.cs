@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Class to handle selection of level in the level selection scene
+**/
+
+//TODO
 public class levelSelection : MonoBehaviour {
 
 	public int level;

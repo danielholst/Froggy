@@ -2,7 +2,7 @@
 using System.Collections;
 
 /**
- * Function to make the frog able to shoot
+ * Function to make the frog able to shot
  **/
 
 public class shootingScript : MonoBehaviour {

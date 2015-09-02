@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Class to handle rotation of the leaves
+**/ 
+
 public class leafRotationScript : MonoBehaviour {
 
 	private float rotationspeed;

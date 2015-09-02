@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public class EnemiesScript : MonoBehaviour {
 
+	public bool enemiesDead;
 	private enemy[] enemies;
 	public GameObject player;
 	public GameObject enemyProjectile;
@@ -15,10 +16,15 @@ public class EnemiesScript : MonoBehaviour {
 	public int level;
 	private float timer;
 	private float endTime;
+	private int enemyCounter;
+	private int enemiesSpawned;
 
 	// Use this for initialization
 	void Start () {
 
+		enemiesDead = false;
+		enemyCounter = 0;
+		enemiesSpawned = 0;
 		enemies = new enemy[5];;
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
@@ -38,6 +44,7 @@ public class EnemiesScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		//update timer
 		if (timer != endTime) 
 			timer += Time.deltaTime;
@@ -47,10 +54,14 @@ public class EnemiesScript : MonoBehaviour {
 			level2(timer);
 		if (level == 3)
 			level3 (timer);
-		
+		enemyCounter = 0;
+		enemiesSpawned = 0;
 		for (int i = 0; i < enemies.Length; i++) {
 
 			if (enemies[i].getEnemyObject() != null) {
+
+				if(enemies[i].getSpawned())
+					enemiesSpawned++;
 				enemies[i].movement();
 
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && enemies[i].getEnemyProjectile() == null) {
@@ -62,8 +73,14 @@ public class EnemiesScript : MonoBehaviour {
 				}
 			}
 		}
+
+		//check if all enemies are killed before next level starts
+		if (enemyCounter == enemiesSpawned) {
+			enemiesDead = true;
+		}
 	}
-	
+
+	//spawns on level 2
 	private void level2(float time) {
 
 		//spawn of enemy after 5 seconds
@@ -79,6 +96,7 @@ public class EnemiesScript : MonoBehaviour {
 		}
 	}
 
+	//spawns on level 3
 	private void level3(float time) {
 		
 		//spawn of enemy after 5 seconds
@@ -96,6 +114,7 @@ public class EnemiesScript : MonoBehaviour {
 		}
 	}
 
+	//function to get a random spawn position for enemy
 	private Vector3 spawnEnemyPosition() {
 		//randomize spawn position
 		int randomNr = Random.Range (-6, 6);

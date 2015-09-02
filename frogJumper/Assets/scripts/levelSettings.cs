@@ -27,8 +27,6 @@ public class levelSettings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//test
-//		print ("Time = " + timer);
 		if (holdTime.GetComponent<holdTime> ().startGame) {
 			if (!(timer <= 0f)) {
 

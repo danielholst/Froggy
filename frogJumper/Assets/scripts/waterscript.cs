@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** 
+ * Function to handle movement of the water
+**/
+
 public class waterscript : MonoBehaviour {
 
 	public float waterSpeed;

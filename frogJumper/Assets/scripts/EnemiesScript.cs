@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 /**
- * Script to handle enemies of levels
+ * Class to handle enemies of levels
  **/
 
 public class EnemiesScript : MonoBehaviour {
@@ -34,7 +34,7 @@ public class EnemiesScript : MonoBehaviour {
 		}
 
 		//set time of the level
-		if (level == 2) {
+		if (level == 2 || level == 4) {
 			timer = 0f;
 			endTime = 30f;
 		}
@@ -56,6 +56,8 @@ public class EnemiesScript : MonoBehaviour {
 			level2(timer);
 		if (level == 3)
 			level3 (timer);
+		if (level == 4)
+			level4 (timer);
 		enemyCounter = 0;
 		enemiesSpawned = 0;
 		for (int i = 0; i < enemies.Length; i++) {
@@ -101,6 +103,24 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 3
 	private void level3(float time) {
+		
+		//spawn of enemy after 5 seconds
+		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
+			print ("Spawn 2 enemies after 5 sec ");
+			createSmallEnemy (0);
+			createSmallEnemy (1);
+		}
+		
+		//spawn of enemy after 15 seconds
+		if ((int)time == 13f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false ) {
+			print( "Spawn 2 enemies after 13 sec ");
+			createSmallEnemy(2);
+			createSmallEnemy(3);
+		}
+	}
+
+	//spawns on level 4
+	private void level4(float time) {	//TODO
 		
 		//spawn of enemy after 5 seconds
 		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
@@ -254,6 +274,4 @@ public class EnemiesScript : MonoBehaviour {
 
 	}
 
-	
 }
-

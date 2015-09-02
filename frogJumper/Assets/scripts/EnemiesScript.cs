@@ -10,8 +10,9 @@ public class EnemiesScript : MonoBehaviour {
 
 	public bool enemiesDead;
 	private enemy[] enemies;
+	private enemyProjectile[] enemyShots;
 	public GameObject player;
-	public GameObject enemyProjectile;
+	public GameObject enemyProjectileObject;
 	public GameObject smallEnemyObject;
 	public int level;
 	private float timer;
@@ -25,9 +26,11 @@ public class EnemiesScript : MonoBehaviour {
 		enemiesDead = false;
 		enemyCounter = 0;
 		enemiesSpawned = 0;
-		enemies = new enemy[5];;
+		enemies = new enemy[5];
+		enemyShots = new enemyProjectile[5];
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
+			enemyShots[i] = new enemyProjectile(enemyProjectileObject);
 		}
 
 		//set time of the level
@@ -44,7 +47,6 @@ public class EnemiesScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
 		//update timer
 		if (timer != endTime) 
 			timer += Time.deltaTime;
@@ -58,18 +60,19 @@ public class EnemiesScript : MonoBehaviour {
 		enemiesSpawned = 0;
 		for (int i = 0; i < enemies.Length; i++) {
 
+			if(enemyShots[i].getIsShot()) {
+				enemyShots[i].moveProjectile();
+			}
+
 			if (enemies[i].getEnemyObject() != null) {
 
 				if(enemies[i].getSpawned())
 					enemiesSpawned++;
 				enemies[i].movement();
 
-				if (enemies[i].getEnemyObject().transform.position.y < 8f && enemies[i].getEnemyProjectile() == null) {
-					enemies[i].shoot (player.transform.position, enemyProjectile);
-				}
-
-				if(enemies[i].getEnemyProjectile() != null) {
-					enemies[i].moveProjectile();
+				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
+					//enemies[i].shoot (player.transform.position, enemyProjectileObject);
+					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject);
 				}
 			}
 		}
@@ -141,7 +144,7 @@ public class EnemiesScript : MonoBehaviour {
 		private GameObject projectile;
 		private int healthOfEnemy;
 		private bool enemySpawned;
-		private Vector3 shootDirection;
+		private Vector3 shotDirection;
 		
 		public enemy()
 		{
@@ -167,20 +170,20 @@ public class EnemiesScript : MonoBehaviour {
 			}
 		}
 		
-		// create a projectile from the enemy flying towards the player
-		public void shoot(Vector3 playerPos, GameObject enemyProjectile)
-		{
-			projectile = Instantiate(enemyProjectile, typeOfEnemy.transform.position, typeOfEnemy.transform.rotation) as GameObject;
-			
-			//get vector towards frog
-			shootDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
-			                             playerPos.y - projectile.transform.position.y, 
-			                             1f);
-		}
+//		// create a projectile from the enemy flying towards the player
+//		public void shoot(Vector3 playerPos, GameObject enemyProjectile)
+//		{
+//			projectile = Instantiate(enemyProjectile, typeOfEnemy.transform.position, typeOfEnemy.transform.rotation) as GameObject;
+//			
+//			//get vector towards frog
+//			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
+//			                             playerPos.y - projectile.transform.position.y, 
+//			                             1f);
+//		}
 		
 		public void moveProjectile()
 		{
-			projectile.transform.position += shootDirection/70;
+			projectile.transform.position += shotDirection/70;
 			
 			if (projectile.transform.position.y < -6f)
 				Destroy (projectile);
@@ -191,10 +194,10 @@ public class EnemiesScript : MonoBehaviour {
 			return typeOfEnemy;
 		}
 
-		public GameObject getEnemyProjectile()
-		{
-			return projectile;
-		}
+//		public GameObject getEnemyProjectile()
+//		{
+//			return projectile;
+//		}
 
 		public int getEnemyHealth()
 		{
@@ -209,6 +212,66 @@ public class EnemiesScript : MonoBehaviour {
 		private void setSpawned(bool spawned)
 		{
 			enemySpawned = spawned;
+		}
+
+	}
+	
+	//class for the enemies projectiles
+	public class enemyProjectile
+	{
+		private GameObject projectile;
+		private bool isShot;
+		private Vector3 shotDirection;
+
+		public enemyProjectile()
+		{
+			projectile = null;
+			isShot = false;
+		}
+
+
+		public enemyProjectile(GameObject proj)
+		{
+			projectile = proj;
+			isShot = false;
+		}
+
+		// create a projectile from the enemy flying towards the player
+		public void shoot(GameObject enemy, Vector3 playerPos, GameObject enemyProjectile)
+		{
+			projectile = Instantiate(enemyProjectile, enemy.transform.position, enemy.transform.rotation) as GameObject;
+			
+			//get vector towards frog
+			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
+			                             playerPos.y - projectile.transform.position.y, 
+			                             1f);
+			setIsShot (true);
+		}
+
+		public void moveProjectile()
+		{
+			projectile.transform.position += shotDirection/90;
+			
+			if (projectile.transform.position.y < -6f)
+			{
+				Destroy (projectile);
+				setIsShot(false);
+			}
+		}
+
+		public bool getIsShot()
+		{
+			return isShot;
+		}
+
+		public void setIsShot(bool fired)
+		{
+			isShot = fired;
+		}
+
+		public GameObject getEnemyProjectile()
+		{
+			return projectile;
 		}
 
 	}

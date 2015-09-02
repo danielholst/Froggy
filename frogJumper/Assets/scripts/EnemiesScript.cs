@@ -141,10 +141,8 @@ public class EnemiesScript : MonoBehaviour {
 	{
 		private Vector3 movVec = new Vector3 (0f, 0.01f, 0f);
 		private GameObject typeOfEnemy;
-		private GameObject projectile;
 		private int healthOfEnemy;
 		private bool enemySpawned;
-		private Vector3 shotDirection;
 		
 		public enemy()
 		{
@@ -169,35 +167,11 @@ public class EnemiesScript : MonoBehaviour {
 				typeOfEnemy.transform.position -= movVec;
 			}
 		}
-		
-//		// create a projectile from the enemy flying towards the player
-//		public void shoot(Vector3 playerPos, GameObject enemyProjectile)
-//		{
-//			projectile = Instantiate(enemyProjectile, typeOfEnemy.transform.position, typeOfEnemy.transform.rotation) as GameObject;
-//			
-//			//get vector towards frog
-//			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
-//			                             playerPos.y - projectile.transform.position.y, 
-//			                             1f);
-//		}
-		
-		public void moveProjectile()
-		{
-			projectile.transform.position += shotDirection/70;
-			
-			if (projectile.transform.position.y < -6f)
-				Destroy (projectile);
-		}
 
 		public GameObject getEnemyObject()
 		{
 			return typeOfEnemy;
 		}
-
-//		public GameObject getEnemyProjectile()
-//		{
-//			return projectile;
-//		}
 
 		public int getEnemyHealth()
 		{
@@ -245,6 +219,10 @@ public class EnemiesScript : MonoBehaviour {
 			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
 			                             playerPos.y - projectile.transform.position.y, 
 			                             1f);
+
+			//add small diff to shot
+			float diff = Random.Range (-3, 3) / 10;
+			shotDirection.x += diff;
 			setIsShot (true);
 		}
 

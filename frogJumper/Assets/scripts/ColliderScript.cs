@@ -11,7 +11,6 @@ public class ColliderScript : MonoBehaviour {
 		if(other.gameObject.tag == "Enemy")
 		{
 			Destroy(other.gameObject);
-
 		}
 	}
 }

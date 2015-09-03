@@ -5,17 +5,11 @@ using System.Collections;
  * Class to handle selection of level in the level selection scene
 **/
 
-//TODO
+
 public class levelSelection : MonoBehaviour {
 
 	private Texture2D button;	
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void OnGUI () {
 		GUI.backgroundColor = Color.clear;
 		if (GUI.Button (new Rect (40, 80, 200, 100), button)) {
@@ -66,6 +60,12 @@ public class levelSelection : MonoBehaviour {
 		if (GUI.Button (new Rect (590, 500, 200, 100), button)) {
 			print ("load level 10");
 			Application.LoadLevel(11);
+		}
+
+		//button to return to main menu
+		if (GUI.Button (new Rect (0, 570, 230, 130), button)) {
+			print ("load level 10");
+			Application.LoadLevel(0);
 		}
 	}
 }

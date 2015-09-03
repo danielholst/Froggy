@@ -10,15 +10,15 @@ public class mainMenuHandler : MonoBehaviour {
 
 		GUI.backgroundColor = Color.clear;
 
-		if (GUI.Button (new Rect (400,100, 100, 50), startButton)) {
-			print ("you clicked the icon");
+		if (GUI.Button (new Rect (500,250, 200, 100), startButton)) {
+			print ("Start Game");
 			//start game
 			Application.LoadLevel(2);
 
 		}
 		
-		if (GUI.Button (new Rect (400,170, 100, 20), levelButton)) {
-			print ("you clicked the text button");
+		if (GUI.Button (new Rect (500, 400, 200, 100), levelButton)) {
+			print ("Level Selection");
 			Application.LoadLevel(1);
 		}
 	}

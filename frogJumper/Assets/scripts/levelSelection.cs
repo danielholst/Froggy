@@ -8,7 +8,7 @@ using System.Collections;
 //TODO
 public class levelSelection : MonoBehaviour {
 
-	public int level;
+	private Texture2D button;	
 
 	// Use this for initialization
 	void Start () {
@@ -16,9 +16,56 @@ public class levelSelection : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void OnGUI () {
+		GUI.backgroundColor = Color.clear;
+		if (GUI.Button (new Rect (40, 80, 200, 100), button)) {
+			print ("load level 1");
+			Application.LoadLevel(2);
+		}
 
-//		if (level == 1)
-//			Application.LoadLevel (1);
+		if (GUI.Button (new Rect (300, 80, 200, 100), button)) {
+			print ("load level 2");
+			Application.LoadLevel(3);
+		}
+
+		if (GUI.Button (new Rect (590, 80, 200, 100), button)) {
+			print ("load level 3");
+			Application.LoadLevel(4);
+		}
+
+		if (GUI.Button (new Rect (850, 80, 200, 100), button)) {
+			print ("load level 4");
+			Application.LoadLevel(5);
+		}
+
+		if (GUI.Button (new Rect (40, 300, 200, 100), button)) {
+			print ("load level 5");
+			Application.LoadLevel(6);
+		}
+
+		if (GUI.Button (new Rect (300, 300, 200, 100), button)) {
+			print ("load level 6");
+			Application.LoadLevel(7);
+		}
+
+		if (GUI.Button (new Rect (590, 300, 200, 100), button)) {
+			print ("load level 7");
+			Application.LoadLevel(8);
+		}
+
+		if (GUI.Button (new Rect (850, 300, 200, 100), button)) {
+			print ("load level 8");
+			Application.LoadLevel(9);
+		}
+
+		if (GUI.Button (new Rect (300, 500, 200, 100), button)) {
+			print ("load level 9");
+			Application.LoadLevel(10);
+		}
+
+		if (GUI.Button (new Rect (590, 500, 200, 100), button)) {
+			print ("load level 10");
+			Application.LoadLevel(11);
+		}
 	}
 }

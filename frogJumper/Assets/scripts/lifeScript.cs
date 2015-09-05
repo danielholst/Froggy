@@ -32,7 +32,7 @@ public class lifeScript : MonoBehaviour {
 		if (level == 3)
 			widthOfLeaf = 1.2f;
 
-		if (level == 4)
+		if (level >= 4 && level <= 10)
 			widthOfLeaf = 1f;
 
 	}

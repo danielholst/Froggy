@@ -9,6 +9,7 @@ using System.Collections;
 public class levelSelection : MonoBehaviour {
 
 	private Texture2D button;	
+	public GameObject waterCircle;
 	
 	void OnGUI () {
 		GUI.backgroundColor = Color.clear;

@@ -21,13 +21,14 @@ public class waterRingsScript : MonoBehaviour {
 
 		if (level == 1)
 			widthOfLeaf = 1.6f;
+
 		else if (level == 2)
 			widthOfLeaf = 1.4f;
 		
 		if (level == 3)
 			widthOfLeaf = 1.2f;
 		
-		if (level == 4)
+		else
 			widthOfLeaf = 1f;
 	}
 	

@@ -14,6 +14,7 @@ public class EnemiesScript : MonoBehaviour {
 	public GameObject player;
 	public GameObject enemyProjectileObject;
 	public GameObject smallEnemyObject;
+	public GameObject mediumEnemyObject;
 	public int level;
 	private float timer;
 	private float endTime;
@@ -135,6 +136,12 @@ public class EnemiesScript : MonoBehaviour {
 			createSmallEnemy(2);
 			createSmallEnemy(3);
 		}
+
+		//spawn of medium enemy after 20 seconds
+		if ((int)time == 20f && enemies[4].getSpawned() == false && enemies[4].getSpawned() == false ) {
+			print( "Spawn medium enemy after 20 sec ");
+			createMediumEnemy(4);
+		}
 	}
 
 	//function to get a random spawn position for enemy
@@ -152,6 +159,15 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		enemyObject = Instantiate (smallEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
+		enemies [index] = new enemy (enemyObject, 1);
+	}
+
+	//create a new medium enemy
+	private void createMediumEnemy(int index) {
+		
+		GameObject enemyObject;
+		enemyObject = Instantiate (mediumEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		
 		enemies [index] = new enemy (enemyObject, 1);
 	}
 
@@ -233,7 +249,8 @@ public class EnemiesScript : MonoBehaviour {
 		// create a projectile from the enemy flying towards the player
 		public void shoot(GameObject enemy, Vector3 playerPos, GameObject enemyProjectile)
 		{
-			projectile = Instantiate(enemyProjectile, enemy.transform.position, enemy.transform.rotation) as GameObject;
+			Vector3 projectileSpawnPos = new Vector3 (enemy.transform.position.x, enemy.transform.position.y - 0.1f, 1f);
+			projectile = Instantiate(enemyProjectile, projectileSpawnPos, enemy.transform.rotation) as GameObject;
 			
 			//get vector towards frog
 			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 

@@ -47,7 +47,7 @@ public class levelSettings : MonoBehaviour {
 				//reached end of level
 				//fade out level
 				//then load and fade in next level
-				levelsCleared.GetComponent<levelsCleared> ().addClearedLevels();
+//				levelsCleared.GetComponent<levelsCleared> ().addClearedLevels();
 				Application.LoadLevel(level+2);
 			}
 		}

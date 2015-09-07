@@ -23,13 +23,10 @@ public class levelSettings : MonoBehaviour {
 		//set time of the level
 		if (level == 1 || level == 2 || level >= 4)
 			timer = 30f;
-
 		else if (level == 3)
 			timer = 20f;
-
 		else if (level >= 5 && level <= 8)
-			timer = 40f;	
-		
+			timer = 40f;
 		else 
 			timer = 50f;
 	}
@@ -46,6 +43,7 @@ public class levelSettings : MonoBehaviour {
 				}
 
 			} else {
+				print ("hej");
 				//reached end of level
 				//fade out level
 				//then load and fade in next level

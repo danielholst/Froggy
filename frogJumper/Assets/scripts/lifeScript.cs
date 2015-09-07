@@ -17,6 +17,7 @@ public class lifeScript : MonoBehaviour {
 	private float widthOfLeaf;
 	private Vector3 frogPosition;
 	private Color frogColor;
+	public int clearedLevels;
 
 	// Use this for initialization
 	void Start () {

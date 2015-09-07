@@ -8,13 +8,17 @@ using System.Collections;
 public class levelSettings : MonoBehaviour {
 
 	public GameObject fader;
+	public GameObject levelsCleared;
 	public GameObject holdTime;
 	public int gameSpeed;
 	public int level;
 	private float timer;
+	private int stagesCleared;
 
 	// Use this for initialization
 	void Start () {
+
+//		stagesCleared = levelsCleared.GetComponent<levelsCleared> ().clearedLevels;
 
 		//set time of the level
 		if (level == 1 || level == 2 || level >= 4)
@@ -45,6 +49,7 @@ public class levelSettings : MonoBehaviour {
 				//reached end of level
 				//fade out level
 				//then load and fade in next level
+				levelsCleared.GetComponent<levelsCleared> ().addClearedLevels();
 				Application.LoadLevel(level+2);
 			}
 		}

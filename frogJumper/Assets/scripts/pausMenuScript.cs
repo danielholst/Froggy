@@ -33,10 +33,10 @@ public class pausMenuScript : MonoBehaviour {
 			Application.LoadLevel (0);
 
 			//if go to level selection is presses
-			Application.LoadLevel(1);
+//			Application.LoadLevel(1);
 
 			//if exit game is pressed
-			Application.Quit();
+//			Application.Quit();
 		
 		}
 	}

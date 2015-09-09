@@ -10,7 +10,7 @@ public class mainMenuHandler : MonoBehaviour {
 		GUI.backgroundColor = Color.clear;
 
 		if (GUI.Button (new Rect (260,300, 300, 300), startButton)) {
-			print ("Start Game");
+//			print ("Start Game");
 			//start game
 			Application.LoadLevel(2);
 

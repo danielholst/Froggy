@@ -35,13 +35,16 @@ public class EnemiesScript : MonoBehaviour {
 		}
 
 		//set time of the level
-		if (level == 2 || level == 4) {
+		if (level == 2 || level == 4 || level == 5) {
 			timer = 0f;
 			endTime = 30f;
 		}
-		if(level == 3) {
+		if (level == 3) {
 			timer = 0f;
 			endTime = 20f;
+		} else {
+			timer = 0f;
+			endTime = 25f;
 		}
 	}
 	
@@ -52,13 +55,9 @@ public class EnemiesScript : MonoBehaviour {
 		if (timer != endTime) 
 			timer += Time.deltaTime;
 
-		//function for enemyManger of level 2
-		if(level == 2)
-			level2(timer);
-		if (level == 3)
-			level3 (timer);
-		if (level == 4)
-			level4 (timer);
+		//function for enemyManger of the different levels
+		getLevelSpawns (level, timer);
+
 		enemyCounter = 0;
 		enemiesSpawned = 0;
 		for (int i = 0; i < enemies.Length; i++) {
@@ -84,6 +83,29 @@ public class EnemiesScript : MonoBehaviour {
 		if (enemyCounter == enemiesSpawned) {
 			enemiesDead = true;
 		}
+	}
+
+	private void getLevelSpawns(int level, float timer)
+	{
+		if(level == 2)
+			level2(timer);
+		if (level == 3)
+			level3 (timer);
+		if (level == 4)
+			level4 (timer);
+		if(level == 5)
+			level5(timer);
+		if (level == 6)
+			level6 (timer);
+		if (level == 7)
+			level7 (timer);
+		if(level == 8)
+			level8(timer);
+		if (level == 9)
+			level9 (timer);
+		if(level == 10)
+			level10(timer);
+
 	}
 
 	//spawns on level 2
@@ -121,7 +143,7 @@ public class EnemiesScript : MonoBehaviour {
 	}
 
 	//spawns on level 4
-	private void level4(float time) {	//TODO
+	private void level4(float time) {
 		
 		//spawn of enemy after 5 seconds
 		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
@@ -142,6 +164,59 @@ public class EnemiesScript : MonoBehaviour {
 			print( "Spawn medium enemy after 20 sec ");
 			createMediumEnemy(4);
 		}
+	}
+
+	//spawns on level 5
+	private void level5(float time) {
+		
+		//spawn of enemy after 5 seconds
+		if ((int)time == 5f && enemies[0].getSpawned() == false) {
+			print ("Spawn 2 enemies after 5 sec ");
+			createSmallEnemy (0);
+		}
+
+		//spawn after 7 seconds
+		if((int)time == 7f && enemies[1].getSpawned() == false) {
+			createMediumEnemy(1);
+		}
+
+		if((int)time == 11f && enemies[2].getSpawned() == false) {
+			createSmallEnemy(2);
+		}
+		//spawn of enemy after 15 seconds
+		if ((int)time == 15f && enemies[3].getSpawned() == false) {
+			createSmallEnemy(3);
+		}
+		
+		//spawn of medium enemy after 20 seconds
+		if ((int)time == 20f && enemies[4].getSpawned() == false) {
+			createMediumEnemy(4);
+		}
+	}
+
+	//spawns on level 6
+	private void level6(float time) {
+
+	}
+
+	//spawns on level 7
+	private void level7(float time) {
+		
+	}
+
+	//spawns on level 8
+	private void level8(float time) {
+		
+	}
+
+	//spawns on level 9
+	private void level9(float time) {
+		
+	}
+
+	//spawns on level 10
+	private void level10(float time) {
+		
 	}
 
 	//function to get a random spawn position for enemy

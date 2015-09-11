@@ -8,7 +8,7 @@ using System.Collections;
 public class pausMenuScript : MonoBehaviour {
 
 	public GameObject EventHandler;
-	private bool paused;
+	public bool paused;
 	// Use this for initialization
 	void Start () {
 	
@@ -35,9 +35,7 @@ public class pausMenuScript : MonoBehaviour {
 			}
 			else
 			{
-				GetComponent<Renderer> ().enabled = false;
-				Time.timeScale = 1.0f;
-				paused = false;
+				resume();
 			}
 		}
 
@@ -50,6 +48,14 @@ public class pausMenuScript : MonoBehaviour {
 			//if exit game is pressed
 //			Application.Quit();
 		
+
+	}
+
+	public void resume() {
+
+		GetComponent<Renderer> ().enabled = false;
+		paused = false;
+		Time.timeScale = 1.0f;
 
 	}
 }

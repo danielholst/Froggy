@@ -17,7 +17,7 @@ public class levelSettings : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+	
 //		stagesCleared = levelsCleared.GetComponent<levelsCleared> ().clearedLevels;
 
 		//set time of the level
@@ -43,11 +43,11 @@ public class levelSettings : MonoBehaviour {
 				}
 
 			} else {
-				print ("hej");
 				//reached end of level
 				//fade out level
 				//then load and fade in next level
-//				levelsCleared.GetComponent<levelsCleared> ().addClearedLevels();
+//				GetComponent<levelsCleared> ().addClearedLevels();
+//				print ("levels cleared = " + GetComponent<levelsCleared> ().getClearedLevels());
 				Application.LoadLevel(level+2);
 			}
 		}

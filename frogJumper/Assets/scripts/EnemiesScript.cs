@@ -27,8 +27,8 @@ public class EnemiesScript : MonoBehaviour {
 		enemiesDead = false;
 		enemyCounter = 0;
 		enemiesSpawned = 0;
-		enemies = new enemy[5];
-		enemyShots = new enemyProjectile[5];
+		enemies = new enemy[10];
+		enemyShots = new enemyProjectile[10];
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
 			enemyShots[i] = new enemyProjectile(enemyProjectileObject);
@@ -197,6 +197,24 @@ public class EnemiesScript : MonoBehaviour {
 	//spawns on level 6
 	private void level6(float time) {
 
+		//spawn after 7 seconds
+		if ((int)time == 7f && enemies [0].getSpawned () == false) {
+			createSmallEnemy (0);
+		}
+		if((int)time == 7f && enemies[1].getSpawned() == false) {
+			createSmallEnemy(1);
+		}
+		
+		//spawn of enemy after 13 seconds
+		if((int)time == 13f && enemies[2].getSpawned() == false) {
+			createMediumEnemy(2);
+		}
+		if ((int)time == 15f && enemies[3].getSpawned() == false) {
+			createMediumEnemy(3);
+		}
+		if ((int)time == 17f && enemies[4].getSpawned() == false) {
+			createMediumEnemy(4);
+		}
 	}
 
 	//spawns on level 7
@@ -275,7 +293,7 @@ public class EnemiesScript : MonoBehaviour {
 		{
 			if(typeOfEnemy.transform.position.y > 6f)
 			{
-				typeOfEnemy.transform.position -= movVec;
+				typeOfEnemy.transform.position -= movVec * 100 * Time.deltaTime;
 			}
 		}
 
@@ -340,7 +358,7 @@ public class EnemiesScript : MonoBehaviour {
 
 		public void moveProjectile()
 		{
-			projectile.transform.position += shotDirection/90;
+			projectile.transform.position += shotDirection/2 * Time.deltaTime;
 			
 			if (projectile.transform.position.y < -6f)
 			{

@@ -19,7 +19,7 @@ public class leafScript : MonoBehaviour {
 	void Start () {
 
 		movementVec = new Vector3 (0f, -2.54f, 0f);
-		rotationspeed = 0.1f;
+		rotationspeed = 10f;
 		prevSpawn = 0f;
 		counter = 0;
 	}
@@ -29,7 +29,7 @@ public class leafScript : MonoBehaviour {
 
 		if (EventHandler.GetComponent<holdTime> ().startGame) {
 			transform.position += movementVec * Time.deltaTime;
-			transform.Rotate (new Vector3 (0f, 0f, rotationspeed));
+			transform.Rotate (new Vector3 (0f, 0f, rotationspeed * Time.deltaTime));
 
 			if (transform.position.y < -5f) {
 				prevSpawn = respawn (prevSpawn);

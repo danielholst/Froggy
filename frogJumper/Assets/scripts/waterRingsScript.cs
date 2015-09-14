@@ -40,6 +40,12 @@ public class waterRingsScript : MonoBehaviour {
 		leaf.GetComponent<SpriteRenderer> ().color = colorLeaf;
 		transform.localScale = new Vector3(scale, scale, 1f);
 
+		//resets colors
+		if (leaf.transform.position.y > 6) {
+			colorLeaf.a = 1f;
+			colorWaterRing.a = 1f;
+		}
+
 		if (growing) {
 //			print ("alpha = " + colorWaterRing.a);
 			scale += 0.02f;
@@ -49,8 +55,8 @@ public class waterRingsScript : MonoBehaviour {
 			if(scale > 2.5f) {
 				growing = false;
 				scale = 0.5f;
-				colorWaterRing.a = 1f;
-				colorLeaf.a = 1f;
+//				colorWaterRing.a = 1f;
+//				colorLeaf.a = 1f;
 			}
 		}
 

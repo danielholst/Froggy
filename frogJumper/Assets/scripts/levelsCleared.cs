@@ -5,12 +5,12 @@ public class levelsCleared : MonoBehaviour {
 
 	private static int clearedLevels;
 
-//	public static levelsCleared instance;
+	public static levelsCleared instance;
 
 	void Awake()
 	{
-//		instance = this;
-		clearedLevels = 0;
+		instance = this;
+//		clearedLevels = 0;
 	}
 
 	public void addClearedLevels()

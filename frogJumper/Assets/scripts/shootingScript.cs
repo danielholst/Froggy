@@ -9,7 +9,6 @@ public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
 	private float shootingSpeed;
-	private int nrOfShots;
 	private GameObject instantiatedProjectile;
 	private bool shooting;
 	private float shotPos;
@@ -19,7 +18,6 @@ public class shootingScript : MonoBehaviour {
 
 		projectile.GetComponent<Renderer> ().enabled = false;
 		shootingSpeed = 0.2f;
-		nrOfShots = 20;
 		shooting = false;
 		shotPos = 0f;
 

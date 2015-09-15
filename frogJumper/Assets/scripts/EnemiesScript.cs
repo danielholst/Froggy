@@ -219,12 +219,53 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 7
 	private void level7(float time) {
-		
+
+		//spawn after 7 seconds
+		if ((int)time == 7f && enemies [0].getSpawned () == false) {
+			createSmallEnemy (0);
+		}
+		if((int)time == 8f && enemies[1].getSpawned() == false) {
+			createSmallEnemy(1);
+		}
+		if((int)time == 10f && enemies[2].getSpawned() == false) {
+			createSmallEnemy(2);
+		}
+		if ((int)time == 12f && enemies[3].getSpawned() == false) {
+			createSmallEnemy(3);
+		}
+		if ((int)time == 15f && enemies[4].getSpawned() == false) {
+			createSmallEnemy(4);
+		}
+		if ((int)time == 19f && enemies[5].getSpawned() == false) {
+			createSmallEnemy(5);
+		}
+		if ((int)time == 23f && enemies[6].getSpawned() == false) {
+			createSmallEnemy(6);
+		}
+		if ((int)time == 27f && enemies[7].getSpawned() == false) {
+			createSmallEnemy(7);
+		}
 	}
 
 	//spawns on level 8
 	private void level8(float time) {
-		
+
+		//spawn after 7 seconds
+		if ((int)time == 7f && enemies [0].getSpawned () == false) {
+			createMediumEnemy (0);
+		}
+		if((int)time == 9f && enemies[1].getSpawned() == false) {
+			createMediumEnemy(1);
+		}
+		if((int)time == 14f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false) {
+			createSmallEnemy(2);
+			createSmallEnemy(3);
+		}
+
+		if ((int)time == 25f && enemies[4].getSpawned() == false && enemies[5].getSpawned() == false) {
+			createMediumEnemy(4);
+			createMediumEnemy(5);
+		}
 	}
 
 	//spawns on level 9
@@ -261,7 +302,7 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		enemyObject = Instantiate (mediumEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		
-		enemies [index] = new enemy (enemyObject, 1);
+		enemies [index] = new enemy (enemyObject, 2);
 	}
 
 
@@ -305,6 +346,11 @@ public class EnemiesScript : MonoBehaviour {
 		public int getEnemyHealth()
 		{
 			return healthOfEnemy;
+		}
+
+		public void decreaseEnemyHealth()
+		{
+			healthOfEnemy--;
 		}
 
 		public bool getSpawned()

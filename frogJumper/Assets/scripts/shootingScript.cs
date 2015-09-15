@@ -45,4 +45,9 @@ public class shootingScript : MonoBehaviour {
 			}
 		}
 	}
+
+	public void setShooting(bool boolShoot)
+	{
+		shooting = boolShoot;
+	}
 }

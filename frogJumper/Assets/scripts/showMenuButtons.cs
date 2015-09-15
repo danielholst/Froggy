@@ -16,13 +16,13 @@ public class showMenuButtons : MonoBehaviour {
 		GUI.backgroundColor = Color.clear;
 
 		GUIStyle resumeButton = new GUIStyle("Resume");
-		resumeButton.fontSize = 70;
+		resumeButton.fontSize = Mathf.RoundToInt (70f * Screen.width / (1200* 1.0f));;
 		resumeButton.onHover.textColor = Color.white;
 		resumeButton.active.textColor = Color.black;
 		resumeButton.normal.textColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
 		
 		GUIStyle mainmenuButton = new GUIStyle("Main menu");
-		mainmenuButton.fontSize = 70;
+		mainmenuButton.fontSize = Mathf.RoundToInt (70f * Screen.width / (1200 * 1.0f));
 		resumeButton.onHover.textColor = Color.white;
 		mainmenuButton.normal.textColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
 

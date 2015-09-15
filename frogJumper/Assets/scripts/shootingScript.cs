@@ -8,6 +8,7 @@ using System.Collections;
 public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
+	public GameObject holdTime;
 	private float shootingSpeed;
 	private GameObject instantiatedProjectile;
 	private bool shooting;
@@ -26,7 +27,7 @@ public class shootingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyUp ("space") && !(shooting) && !GetComponent<lifeScript>().sinking) {
+		if (Input.GetKeyUp ("space") && holdTime.GetComponent<holdTime> ().startGame && !(shooting) && !GetComponent<lifeScript>().sinking) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
 			Vector3 projectileSpawn = new Vector3(transform.position.x, transform.position.y+1f, 1f); 

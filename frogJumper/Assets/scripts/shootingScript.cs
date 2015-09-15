@@ -8,7 +8,7 @@ using System.Collections;
 public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
-	public GameObject holdTime;
+	private GameObject holdTime;
 	private float shootingSpeed;
 	private GameObject instantiatedProjectile;
 	private bool shooting;
@@ -17,6 +17,7 @@ public class shootingScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		holdTime = GameObject.FindGameObjectWithTag ("HoldTime");
 		projectile.GetComponent<Renderer> ().enabled = false;
 		shootingSpeed = 0.2f;
 		shooting = false;

@@ -14,6 +14,7 @@ public class levelSettings : MonoBehaviour {
 	public int level;
 	private float timer;
 	private int stagesCleared;
+	private float lastSpawn;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,8 @@ public class levelSettings : MonoBehaviour {
 			timer = 40f;
 		else 
 			timer = 50f;
+
+		lastSpawn = 0f;
 	}
 	
 	// Update is called once per frame
@@ -51,5 +54,15 @@ public class levelSettings : MonoBehaviour {
 				Application.LoadLevel(level+2);
 			}
 		}
+	}
+
+	public void setLastSpawn(float pos)
+	{
+		lastSpawn = pos;
+	}
+
+	public float getLastSpawn()
+	{
+		return lastSpawn;
 	}
 }

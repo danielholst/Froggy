@@ -12,15 +12,17 @@ public class leafScript : MonoBehaviour {
 	private Vector3 movementVec;
 	public GameObject EventHandler;
 	public int level;
-	private float prevSpawn;
+	//private float prevSpawn;
 	public int counter;
+	private GameObject settings;
 
 	// Use this for initialization
 	void Start () {
 
+		settings = GameObject.FindGameObjectWithTag ("Settings");
 		movementVec = new Vector3 (0f, -2.54f, 0f);
 		rotationspeed = 10f;
-		prevSpawn = 0f;
+		//prevSpawn = 0f;
 		counter = 0;
 	}
 	
@@ -32,7 +34,7 @@ public class leafScript : MonoBehaviour {
 			transform.Rotate (new Vector3 (0f, 0f, rotationspeed * Time.deltaTime));
 
 			if (transform.position.y < -5f) {
-				prevSpawn = respawn (prevSpawn);
+				settings.GetComponent<levelSettings>().setLastSpawn( respawn (settings.GetComponent<levelSettings>().getLastSpawn()));
 				counter++;
 			}
 
@@ -55,7 +57,7 @@ public class leafScript : MonoBehaviour {
 	//function to get a random position without making it spawn at same place as previous leaf
 	float randomFunction (float prevSpawn) {
 		int randomNr = Random.Range (-6, 6);
-		while (randomNr >= prevSpawn -1 && randomNr <= prevSpawn +1) {
+		while (randomNr >= prevSpawn -2 && randomNr <= prevSpawn +2 ) {
 			randomNr = Random.Range (-6, 6);
 		}
 

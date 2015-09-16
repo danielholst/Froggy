@@ -48,9 +48,9 @@ public class waterRingsScript : MonoBehaviour {
 
 		if (growing) {
 //			print ("alpha = " + colorWaterRing.a);
-			scale += 0.02f;
-			colorLeaf.a -= 0.01f;
-			colorWaterRing.a -= 0.01f;
+			scale += 1.2f * Time.deltaTime;
+			colorLeaf.a -= 0.7f * Time.deltaTime;
+			colorWaterRing.a -= 0.7f * Time.deltaTime;
 
 			if(scale > 2.5f) {
 				growing = false;

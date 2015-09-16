@@ -16,6 +16,7 @@ public class EnemiesScript : MonoBehaviour {
 	public GameObject smallEnemyObject;
 	public GameObject mediumEnemyObject;
 	public GameObject bossEnemeyObject;
+	public GameObject enemyShadow;
 	public int level;
 	private float timer;
 	private float endTime;
@@ -30,6 +31,7 @@ public class EnemiesScript : MonoBehaviour {
 		enemiesSpawned = 0;
 		enemies = new enemy[10];
 		enemyShots = new enemyProjectile[10];
+
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
 			enemyShots[i] = new enemyProjectile(enemyProjectileObject);
@@ -66,16 +68,18 @@ public class EnemiesScript : MonoBehaviour {
 		enemiesSpawned = 0;
 		for (int i = 0; i < enemies.Length; i++) {
 
+			//move enemy projectiles
 			if(enemyShots[i].getIsShot()) {
 				enemyShots[i].moveProjectile();
 			}
 
+			//if enemy is spawned
 			if (enemies[i].getEnemyObject() != null) {
 
 				//Move enemies
 				enemies[i].movement();
 
-				//
+				//handle nr of spawned enemies
 				if(enemies[i].getSpawned())
 					enemiesSpawned++;
 
@@ -83,6 +87,9 @@ public class EnemiesScript : MonoBehaviour {
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
 					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject);
 				}
+			}
+			else {
+				enemies[i].destroyEnemyShadow();
 			}
 		}
 
@@ -344,7 +351,7 @@ public class EnemiesScript : MonoBehaviour {
 	private Vector3 spawnEnemyPosition() {
 		//randomize spawn position
 		int randomNr = Random.Range (-6, 6);
-		Vector3 spawnPos = new Vector3 (randomNr, 9f, 1f);
+		Vector3 spawnPos = new Vector3 (randomNr, 10f, 1f);
 		return spawnPos;
 	}
 
@@ -353,18 +360,24 @@ public class EnemiesScript : MonoBehaviour {
 	private void createSmallEnemy(int index) {
 	
 		GameObject enemyObject;
-		enemyObject = Instantiate (smallEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		GameObject shadowObject;
+		Vector3 pos = spawnEnemyPosition ();
+		enemyObject = Instantiate (smallEnemyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
-		enemies [index] = new enemy (enemyObject, 1);
+		enemies [index] = new enemy (enemyObject, 1, shadowObject);
 	}
 
 	//create a new medium enemy
 	private void createMediumEnemy(int index) {
 		
 		GameObject enemyObject;
-		enemyObject = Instantiate (mediumEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		GameObject shadowObject;
+		Vector3 pos = spawnEnemyPosition ();
+		enemyObject = Instantiate (mediumEnemyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		
-		enemies [index] = new enemy (enemyObject, 2);
+		enemies [index] = new enemy (enemyObject, 2, shadowObject);
 	}
 
 	private void createBossEnemy(int index) {
@@ -372,7 +385,7 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		enemyObject = Instantiate (bossEnemeyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
-		enemies[index] = new enemy (enemyObject, 10);
+		enemies[index] = new enemy (enemyObject, 10, enemyShadow);
 	}
 
 
@@ -383,29 +396,40 @@ public class EnemiesScript : MonoBehaviour {
 		private GameObject typeOfEnemy;
 		private int healthOfEnemy;
 		private bool enemySpawned;
+		private GameObject shadow;
 		
 		public enemy()
 		{
 			typeOfEnemy = null;
 			healthOfEnemy = 0;
 			enemySpawned = false;
+			shadow = null;
 			
 		}
 		
-		public enemy(GameObject type, int health)
+		public enemy(GameObject type, int health, GameObject shadowObject)
 		{
 			typeOfEnemy = type;
 			healthOfEnemy = health;
 			enemySpawned = true;
+			shadow = shadowObject;
 		}
 		
 		//movement for the enemy so it moves to top of screen
 		public void movement()
 		{
+
 			if(typeOfEnemy.transform.position.y > 6f)
 			{
+				shadow.transform.position -= movVec * 100 * Time.deltaTime;
 				typeOfEnemy.transform.position -= movVec * 100 * Time.deltaTime;
 			}
+		}
+
+		public void destroyEnemyShadow()
+		{
+			if (shadow != null)
+				Destroy (shadow);
 		}
 
 		public GameObject getEnemyObject()

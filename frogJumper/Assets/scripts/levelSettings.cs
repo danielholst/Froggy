@@ -52,7 +52,7 @@ public class levelSettings : MonoBehaviour {
 					timer -= Time.deltaTime;
 				}
 
-			} 
+			}
 			else {
 				//reached end of level
 				//fade out level

@@ -7,6 +7,7 @@ using System.Collections;
 
 public class levelSettings : MonoBehaviour {
 
+	private GameObject enemies;
 	public GameObject fader;
 //	public GameObject levelsCleared;
 	public GameObject holdTime;
@@ -21,17 +22,16 @@ public class levelSettings : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-//		stagesCleared = levelsCleared.GetComponent<levelsCleared> ().clearedLevels;
-
+		enemies = GameObject.FindGameObjectWithTag ("EnemyHandler");
 		//set time of the level
-		if (level == 1 || level == 2 || level >= 4)
+		if (level == 2 || level == 4 || level == 5)
 			timer = 30f;
 		else if (level == 3)
 			timer = 20f;
-		else if (level >= 5 && level <= 8)
+		else if (level == 10)
 			timer = 40f;
 		else 
-			timer = 50f;
+			timer = 25f;
 
 		lastSpawn = 0f;
 		clearedLevels = 0;
@@ -43,12 +43,17 @@ public class levelSettings : MonoBehaviour {
 		if (level != 0 && holdTime.GetComponent<holdTime> ().startGame) {
 			if (!(timer <= 0f)) {
 
-				timer -= Time.deltaTime;
-				if(timer <=1f) {
+				if(timer >=1f)
+					timer -= Time.deltaTime;
+
+				//Check if all enemies are dead before next level is loaded
+				if( enemies.GetComponent<EnemiesScript>().enemiesDead && timer <= 1f) {
 					fader.GetComponent<faderScript>().EndScene();
+					timer -= Time.deltaTime;
 				}
 
-			} else {
+			} 
+			else {
 				//reached end of level
 				//fade out level
 				//then load and fade in next level

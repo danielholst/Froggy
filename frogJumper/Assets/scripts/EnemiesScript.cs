@@ -15,6 +15,7 @@ public class EnemiesScript : MonoBehaviour {
 	public GameObject enemyProjectileObject;
 	public GameObject smallEnemyObject;
 	public GameObject mediumEnemyObject;
+	public GameObject bossEnemeyObject;
 	public int level;
 	private float timer;
 	private float endTime;
@@ -34,16 +35,19 @@ public class EnemiesScript : MonoBehaviour {
 			enemyShots[i] = new enemyProjectile(enemyProjectileObject);
 		}
 
+		timer = 0f;
+
 		//set time of the level
 		if (level == 2 || level == 4 || level == 5) {
-			timer = 0f;
 			endTime = 30f;
 		}
-		if (level == 3) {
-			timer = 0f;
+		else if (level == 3) {
 			endTime = 20f;
-		} else {
-			timer = 0f;
+		}
+		else if ( level == 10 ) {
+			endTime = 40f;
+		}
+		else {
 			endTime = 25f;
 		}
 	}
@@ -68,12 +72,15 @@ public class EnemiesScript : MonoBehaviour {
 
 			if (enemies[i].getEnemyObject() != null) {
 
-				if(enemies[i].getSpawned())
-					enemiesSpawned++;
+				//Move enemies
 				enemies[i].movement();
 
+				//
+				if(enemies[i].getSpawned())
+					enemiesSpawned++;
+
+				//Enemy shoot
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
-					//enemies[i].shoot (player.transform.position, enemyProjectileObject);
 					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject);
 				}
 			}
@@ -305,6 +312,31 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 10
 	private void level10(float time) {
+
+		if ((int)time == 7f && enemies [0].getSpawned () == false) {
+			createMediumEnemy (0);
+		}
+		if((int)time == 11f && enemies[1].getSpawned() == false) {
+			createMediumEnemy(1);
+		}
+		if((int)time == 15f && enemies[2].getSpawned() == false) {
+			createMediumEnemy(2);
+		}
+		if ((int)time == 20f && enemies[3].getSpawned() == false) {
+			createMediumEnemy(3);
+		}
+		if ((int)time == 25f && enemies[4].getSpawned() == false) {
+			createMediumEnemy(4);
+		}
+		if ((int)time == 28 && enemies[5].getSpawned() == false) {
+			createMediumEnemy(5);
+		}
+
+		//Spawn last boss
+		if ((int)time == 35f && enemies[6].getSpawned() == false) {
+			print ("Booss spawned");
+			//			createBossEnemy(6);
+		}
 		
 	}
 
@@ -312,7 +344,7 @@ public class EnemiesScript : MonoBehaviour {
 	private Vector3 spawnEnemyPosition() {
 		//randomize spawn position
 		int randomNr = Random.Range (-6, 6);
-		Vector3 spawnPos = new Vector3 (randomNr, 10f, 1f);
+		Vector3 spawnPos = new Vector3 (randomNr, 9f, 1f);
 		return spawnPos;
 	}
 
@@ -333,6 +365,14 @@ public class EnemiesScript : MonoBehaviour {
 		enemyObject = Instantiate (mediumEnemyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		
 		enemies [index] = new enemy (enemyObject, 2);
+	}
+
+	private void createBossEnemy(int index) {
+
+		GameObject enemyObject;
+		enemyObject = Instantiate (bossEnemeyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+
+		enemies[index] = new enemy (enemyObject, 10);
 	}
 
 

@@ -8,13 +8,15 @@ using System.Collections;
 public class levelSettings : MonoBehaviour {
 
 	public GameObject fader;
-	public GameObject levelsCleared;
+//	public GameObject levelsCleared;
 	public GameObject holdTime;
 	public int gameSpeed;
 	public int level;
 	private float timer;
 	private int stagesCleared;
 	private float lastSpawn;
+	public static int clearedLevels;
+
 
 	// Use this for initialization
 	void Start () {
@@ -32,12 +34,13 @@ public class levelSettings : MonoBehaviour {
 			timer = 50f;
 
 		lastSpawn = 0f;
+		clearedLevels = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (holdTime.GetComponent<holdTime> ().startGame) {
+		if (level != 0 && holdTime.GetComponent<holdTime> ().startGame) {
 			if (!(timer <= 0f)) {
 
 				timer -= Time.deltaTime;
@@ -51,6 +54,7 @@ public class levelSettings : MonoBehaviour {
 				//then load and fade in next level
 //				GetComponent<levelsCleared> ().addClearedLevels();
 //				print ("levels cleared = " + GetComponent<levelsCleared> ().getClearedLevels());
+				clearedLevels++;
 				Application.LoadLevel(level+2);
 			}
 		}

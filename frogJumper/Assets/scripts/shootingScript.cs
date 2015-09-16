@@ -12,7 +12,6 @@ public class shootingScript : MonoBehaviour {
 	private float shootingSpeed;
 	private GameObject instantiatedProjectile;
 	private bool shooting;
-	private float shotPos;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +20,6 @@ public class shootingScript : MonoBehaviour {
 		projectile.GetComponent<Renderer> ().enabled = false;
 		shootingSpeed = 0.2f;
 		shooting = false;
-		shotPos = 0f;
-
 	}
 	
 	// Update is called once per frame

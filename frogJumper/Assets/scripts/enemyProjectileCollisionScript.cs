@@ -6,15 +6,13 @@ using System.Collections;
  **/
 
 public class enemyProjectileCollisionScript : MonoBehaviour {
-
-	public GameObject fader;
+	
 	private GameObject player;
 	private Vector3 playerPos;
 
 	// Use this for initialization
 	void Start () {
 
-		fader = GameObject.FindGameObjectWithTag ("Fader");
 		player = GameObject.FindGameObjectWithTag("Player");
 		playerPos = player.transform.position;
 	}
@@ -24,7 +22,7 @@ public class enemyProjectileCollisionScript : MonoBehaviour {
 	
 		//if enemy projectile hits frog
 		if (transform.position.x <= playerPos.x + 0.05f && transform.position.x >= playerPos.x - 0.05f && transform.position.y <= playerPos.y + 0.05f && transform.position.y >= playerPos.y - 0.05f) {
-			fader.GetComponent<faderScript>().EndScene();
+			player.GetComponent<Rigidbody2D>().AddForce(new Vector3(0f, -10f, 0f));
 			print ("frog is hit");
 		}
 	}

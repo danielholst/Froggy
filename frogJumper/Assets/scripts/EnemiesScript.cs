@@ -270,7 +270,37 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 9
 	private void level9(float time) {
-		
+
+		if ((int)time == 7f && enemies [0].getSpawned () == false) {
+			createSmallEnemy (0);
+		}
+		if((int)time == 8f && enemies[1].getSpawned() == false) {
+			createSmallEnemy(1);
+		}
+		if((int)time == 10f && enemies[2].getSpawned() == false) {
+			createSmallEnemy(2);
+		}
+		if ((int)time == 12f && enemies[3].getSpawned() == false) {
+			createSmallEnemy(3);
+		}
+		if ((int)time == 15f && enemies[4].getSpawned() == false) {
+			createSmallEnemy(4);
+		}
+		if ((int)time == 19f && enemies[5].getSpawned() == false) {
+			createSmallEnemy(5);
+		}
+		if ((int)time == 23f && enemies[6].getSpawned() == false) {
+			createSmallEnemy(6);
+		}
+		if ((int)time == 27f && enemies [7].getSpawned () == false) {
+			createSmallEnemy (7);
+		}
+		if ((int)time == 28f && enemies [8].getSpawned () == false) {
+			createSmallEnemy (8);
+		}
+		if ((int)time == 29f && enemies[9].getSpawned() == false) {
+			createSmallEnemy(9);
+		}
 	}
 
 	//spawns on level 10
@@ -404,7 +434,7 @@ public class EnemiesScript : MonoBehaviour {
 
 		public void moveProjectile()
 		{
-			projectile.transform.position += shotDirection/2 * Time.deltaTime;
+			projectile.transform.position += shotDirection/3*2 * Time.deltaTime;
 			
 			if (projectile.transform.position.y < -6f)
 			{

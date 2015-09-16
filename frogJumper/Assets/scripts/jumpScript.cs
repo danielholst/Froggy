@@ -39,7 +39,7 @@ public class jumpScript : MonoBehaviour {
 
 		//if frog missed a leaf and is sinking
 		if (GetComponent<lifeScript> ().sinking) {
-			waterRing.transform.position = new Vector3 (splashPos.x, waterRing.transform.position.y - 0.03f, 1f);
+			waterRing.transform.position = new Vector3 (splashPos.x, transform.position.y - 0.03f, 1f);
 			waterRing.GetComponent<SpriteRenderer> ().enabled = true;
 			transform.position = new Vector3(transform.position.x, transform.position.y - 0.03f, 1f);
 			shadow.GetComponent<SpriteRenderer>().enabled = false;
@@ -76,7 +76,8 @@ public class jumpScript : MonoBehaviour {
 			//scale frog so it loops like it jumps up
 			scaleVec = new Vector2 (0.4f * scale, 0.6f * scale);
 			transform.localScale = scaleVec;
-			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f);
+//			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f);
+			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f + transform.position.y);
 
 		}	
 	}

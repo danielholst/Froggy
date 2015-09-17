@@ -24,14 +24,18 @@ public class levelSettings : MonoBehaviour {
 	
 		enemies = GameObject.FindGameObjectWithTag ("EnemyHandler");
 		//set time of the level
-		if (level == 2 || level == 4 || level == 5)
+		if (level == 1 || level == 2 || level == 4 || level == 5)
 			timer = 30f;
 		else if (level == 3)
 			timer = 20f;
-		else if (level == 10)
+		else if (level == 6 || level == 8)
+			timer = 35f;
+		else if (level == 7 || level == 9)
 			timer = 40f;
+		else if (level == 10 || level == 11)
+			timer = 50f;
 		else 
-			timer = 25f;
+			timer = 2f;
 
 		lastSpawn = 0f;
 		clearedLevels = 0;
@@ -47,7 +51,7 @@ public class levelSettings : MonoBehaviour {
 					timer -= Time.deltaTime;
 
 				//Check if all enemies are dead before next level is loaded
-				if( enemies.GetComponent<EnemiesScript>().enemiesDead && timer <= 1f) {
+				if( timer <= 1f) {
 					fader.GetComponent<faderScript>().EndScene();
 					timer -= Time.deltaTime;
 				}

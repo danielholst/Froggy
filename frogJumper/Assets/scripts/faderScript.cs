@@ -65,8 +65,9 @@ public class faderScript : MonoBehaviour
 		// Start fading towards black.
 		FadeToBlack();
 		
-		// If the screen is almost black...
-//		if(guiTexture.color.a >= 0.95f)
+		 //If the screen is almost black...
+		if (guiTexture.color.a >= 0.95f)
+			guiTexture.color = Color.clear;
 			// ... reload the level.
 //			Application.LoadLevel(0);
 	}

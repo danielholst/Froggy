@@ -18,47 +18,47 @@ public class levelSelection : MonoBehaviour {
 			Application.LoadLevel(2);
 		}
 
-		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/6, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 0) {
+		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/6, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 0) {
 			print ("load level 2");
 			Application.LoadLevel(3);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/6, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 1) {
+		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/6, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 1) {
 			print ("load level 3");
 			Application.LoadLevel(4);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*7, Screen.height/6,Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 2) {
+		if (GUI.Button (new Rect (Screen.width/10*7, Screen.height/6,Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 2) {
 			print ("load level 4");
 			Application.LoadLevel(5);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*1, Screen.height/10*4,Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 3) {
+		if (GUI.Button (new Rect (Screen.width/10*1, Screen.height/10*4,Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 3) {
 			print ("load level 5");
 			Application.LoadLevel(6);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/10*4, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 4) {
+		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/10*4, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 4) {
 			print ("load level 6");
 			Application.LoadLevel(7);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/10*4, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 5) {
+		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/10*4, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 5) {
 			print ("load level 7");
 			Application.LoadLevel(8);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*7, Screen.height/10*4, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 6) {
+		if (GUI.Button (new Rect (Screen.width/10*7, Screen.height/10*4, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 6) {
 			print ("load level 8");
 			Application.LoadLevel(9);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/10*7, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 7) {
+		if (GUI.Button (new Rect (Screen.width/10*3, Screen.height/10*7, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 7) {
 			print ("load level 9");
 			Application.LoadLevel(10);
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/10*7, Screen.width/6, Screen.height/6), " ") && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 8) {
+		if (GUI.Button (new Rect (Screen.width/10*5, Screen.height/10*7, Screen.width/6, Screen.height/6), " ")){// && levelsCleared.GetComponent<levelsCleared>().getClearedLevels() > 8) {
 			print ("load level 10");
 			Application.LoadLevel(11);
 		}

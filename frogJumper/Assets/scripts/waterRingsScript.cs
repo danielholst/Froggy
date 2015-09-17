@@ -62,7 +62,7 @@ public class waterRingsScript : MonoBehaviour {
 
 		//if leaf position.y = 0 (when frog lands on leaf) the scaling starts of the water rings
 		if (leaf.transform.position.y >= 0.2f && leaf.transform.position.y <= 0.3f 
-		    && frog.transform.position.x < (leaf.transform.position.x + widthOfLeaf) && frog.transform.position.x > (leaf.transform.position.x - widthOfLeaf)) {
+		    && frog.transform.position.x < (leaf.transform.position.x + widthOfLeaf + 0.5f) && frog.transform.position.x > (leaf.transform.position.x - (widthOfLeaf + 0.5f))) {
 			growing = true;
 		}
 	}

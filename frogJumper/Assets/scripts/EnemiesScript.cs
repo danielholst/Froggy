@@ -88,6 +88,7 @@ public class EnemiesScript : MonoBehaviour {
 					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject);
 				}
 			}
+			//to destroy enemy shadows after the enemy is killed
 			else {
 				enemies[i].destroyEnemyShadow();
 			}

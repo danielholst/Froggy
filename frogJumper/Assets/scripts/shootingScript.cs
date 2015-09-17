@@ -8,9 +8,11 @@ using System.Collections;
 public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
+	public GameObject projectileShadow;
 	private GameObject holdTime;
 	private float shootingSpeed;
 	private GameObject instantiatedProjectile;
+	private GameObject instantiatedProjectileShadow;
 	private bool shooting;
 
 	// Use this for initialization
@@ -18,6 +20,7 @@ public class shootingScript : MonoBehaviour {
 
 		holdTime = GameObject.FindGameObjectWithTag ("HoldTime");
 		projectile.GetComponent<Renderer> ().enabled = false;
+		projectileShadow.GetComponent<Renderer> ().enabled = false;
 		shootingSpeed = 0.2f;
 		shooting = false;
 	}
@@ -28,16 +31,21 @@ public class shootingScript : MonoBehaviour {
 		if (Input.GetKeyUp ("space") && holdTime.GetComponent<holdTime> ().startGame && !(shooting) && !GetComponent<lifeScript>().sinking) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
+			projectileShadow.GetComponent<Renderer>().enabled = true;
+
 			Vector3 projectileSpawn = new Vector3(transform.position.x, transform.position.y+1f, 1f); 
 //			print ("Shooting!");
 			instantiatedProjectile = Instantiate(projectile,projectileSpawn,transform.rotation)as GameObject;
+			instantiatedProjectileShadow = Instantiate(projectileShadow,new Vector3 (projectileSpawn.x, projectileSpawn.y - 0.6f, 1f),transform.rotation)as GameObject;
 			shooting = true;
 		}
 
 		if (shooting) {
 			instantiatedProjectile.transform.position += new Vector3(0f,shootingSpeed, 0f);
+			instantiatedProjectileShadow.transform.position += new Vector3(0f,shootingSpeed, 0f);
 			if(instantiatedProjectile.transform.position.y > 8) {
 				Destroy(instantiatedProjectile);
+				Destroy (instantiatedProjectileShadow);
 				shooting = false;
 			}
 		}

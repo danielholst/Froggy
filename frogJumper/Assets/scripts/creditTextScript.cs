@@ -14,7 +14,7 @@ public class creditTextScript : MonoBehaviour {
 
 		transform.position -= movVec;
 
-		if (transform.position.y <= -7f)
+		if (transform.position.y <= -9f)
 			Application.LoadLevel (0);
 	}
 }

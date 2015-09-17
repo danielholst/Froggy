@@ -390,7 +390,10 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		GameObject shadowObject;
 		Vector3 pos = new Vector3 (0f, 10f, 0f);
+
 		enemyObject = Instantiate (bossEnemeyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		shadowObject.transform.localScale = new Vector3 (0.4f, -0.4f, 1f);
 
 		enemies[index] = new enemy (enemyObject, 10, enemyShadow);
 	}

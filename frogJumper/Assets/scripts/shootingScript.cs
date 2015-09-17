@@ -28,6 +28,9 @@ public class shootingScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if(instantiatedProjectile == null && instantiatedProjectileShadow != null)
+			Destroy (instantiatedProjectileShadow);
+
 		if (Input.GetKeyUp ("space") && holdTime.GetComponent<holdTime> ().startGame && !(shooting) && !GetComponent<lifeScript>().sinking) {
 
 			projectile.GetComponent<Renderer> ().enabled = true;
@@ -43,9 +46,8 @@ public class shootingScript : MonoBehaviour {
 		if (shooting) {
 			instantiatedProjectile.transform.position += new Vector3(0f,shootingSpeed, 0f);
 			instantiatedProjectileShadow.transform.position += new Vector3(0f,shootingSpeed, 0f);
-			if(instantiatedProjectile.transform.position.y > 8) {
+			if(instantiatedProjectile.transform.position.y > 9) {
 				Destroy(instantiatedProjectile);
-				Destroy (instantiatedProjectileShadow);
 				shooting = false;
 			}
 		}

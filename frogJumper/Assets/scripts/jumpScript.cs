@@ -39,6 +39,12 @@ public class jumpScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//handle drag back after collision
+		if(transform.position.y < 0f)
+		{
+			transform.position += new Vector3(0f, 0.002f, 0f);
+		}
+
 		waterRing.GetComponent<SpriteRenderer> ().color = colorWaterRing;
 
 		waterRing.transform.localScale = new Vector3(scaleWaterRing, scaleWaterRing, 1f);

@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Class to handle the jumping of frog
+ * Handling the shadow of frog
+ * Handling waterRings
+**/
+
 public class jumpScript : MonoBehaviour {
 
 	private float speed;
@@ -51,6 +57,13 @@ public class jumpScript : MonoBehaviour {
 
 		}
 
+		//prevent frog to jump of screen 
+		if (transform.position.x > 9f)
+			transform.position = new Vector3 (9f, 0f, 1f);
+		if (transform.position.x < -9f)
+			transform.position = new Vector3 (-9f, 0f, 1f);
+
+		//scaling of water rings
 		if (growing) {
 			scaleWaterRing += 0.01f;
 			colorWaterRing.a -= 0.01f;

@@ -17,6 +17,7 @@ public class EnemiesScript : MonoBehaviour {
 	public GameObject mediumEnemyObject;
 	public GameObject bossEnemeyObject;
 	public GameObject enemyShadow;
+	public GameObject projectileShadowObject;
 	public int level;
 	private float timer;
 	private float endTime;
@@ -34,7 +35,7 @@ public class EnemiesScript : MonoBehaviour {
 
 		for (int i = 0; i < enemies.Length; i++) {
 			enemies [i] = new enemy();
-			enemyShots[i] = new enemyProjectile(enemyProjectileObject);
+			enemyShots[i] = new enemyProjectile(enemyProjectileObject, projectileShadowObject);
 		}
 
 		timer = 0f;
@@ -85,7 +86,7 @@ public class EnemiesScript : MonoBehaviour {
 
 				//Enemy shoot
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
-					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject);
+					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject, projectileShadowObject);
 				}
 			}
 			//to destroy enemy shadows after the enemy is killed
@@ -343,7 +344,7 @@ public class EnemiesScript : MonoBehaviour {
 		//Spawn last boss
 		if ((int)time == 35f && enemies[6].getSpawned() == false) {
 			print ("Booss spawned");
-			//			createBossEnemy(6);
+			createBossEnemy(6);
 		}
 		
 	}
@@ -363,6 +364,7 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		GameObject shadowObject;
 		Vector3 pos = spawnEnemyPosition ();
+
 		enemyObject = Instantiate (smallEnemyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
@@ -375,8 +377,10 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject enemyObject;
 		GameObject shadowObject;
 		Vector3 pos = spawnEnemyPosition ();
+
 		enemyObject = Instantiate (mediumEnemyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		shadowObject.transform.localScale = new Vector3 (0.2f, -0.2f, 1f);
 		
 		enemies [index] = new enemy (enemyObject, 2, shadowObject);
 	}
@@ -384,6 +388,8 @@ public class EnemiesScript : MonoBehaviour {
 	private void createBossEnemy(int index) {
 
 		GameObject enemyObject;
+		GameObject shadowObject;
+		Vector3 pos = new Vector3 (0f, 10f, 0f);
 		enemyObject = Instantiate (bossEnemeyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 
 		enemies[index] = new enemy (enemyObject, 10, enemyShadow);
@@ -464,6 +470,7 @@ public class EnemiesScript : MonoBehaviour {
 	public class enemyProjectile
 	{
 		private GameObject projectile;
+		private GameObject projectileShadow;
 		private bool isShot;
 		private Vector3 shotDirection;
 
@@ -471,20 +478,23 @@ public class EnemiesScript : MonoBehaviour {
 		{
 			projectile = null;
 			isShot = false;
+			projectileShadow = null;
 		}
 
 
-		public enemyProjectile(GameObject proj)
+		public enemyProjectile(GameObject proj, GameObject shadow)
 		{
 			projectile = proj;
+			projectileShadow = shadow;
 			isShot = false;
 		}
 
 		// create a projectile from the enemy flying towards the player
-		public void shoot(GameObject enemy, Vector3 playerPos, GameObject enemyProjectile)
+		public void shoot(GameObject enemy, Vector3 playerPos, GameObject enemyProjectile, GameObject projectileShadowObj)
 		{
 			Vector3 projectileSpawnPos = new Vector3 (enemy.transform.position.x, enemy.transform.position.y - 0.1f, 1f);
 			projectile = Instantiate(enemyProjectile, projectileSpawnPos, enemy.transform.rotation) as GameObject;
+			projectileShadow = Instantiate(projectileShadowObj	,projectileSpawnPos, enemy.transform.rotation) as GameObject;
 			
 			//get vector towards frog
 			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
@@ -499,11 +509,14 @@ public class EnemiesScript : MonoBehaviour {
 
 		public void moveProjectile()
 		{
-			projectile.transform.position += shotDirection/3*2 * Time.deltaTime;
-			
+			projectile.transform.position += shotDirection/10*8 * Time.deltaTime;
+			projectileShadow.transform.position = new Vector3(projectile.transform.position.x, projectile.transform.position.y - 0.6f, 1f);
+
+
 			if (projectile.transform.position.y < -6f)
 			{
 				Destroy (projectile);
+				Destroy (projectileShadow);
 				setIsShot(false);
 			}
 		}

@@ -86,6 +86,8 @@ public class EnemiesScript : MonoBehaviour {
 
 				//Enemy shoot
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
+					print ("enemyCounter = " + enemyCounter);
+					print ("enemiesSpawned = " + enemiesSpawned);
 					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject, projectileShadowObject);
 				}
 			}
@@ -96,9 +98,9 @@ public class EnemiesScript : MonoBehaviour {
 		}
 
 		//check if all enemies are killed before next level starts
-		if (enemyCounter == enemiesSpawned) {
-			enemiesDead = true;
-		}
+//		if (enemyCounter == enemiesSpawned) {
+//			enemiesDead = true;
+//		}
 	}
 
 	private void getLevelSpawns(int level, float timer)
@@ -353,7 +355,8 @@ public class EnemiesScript : MonoBehaviour {
 	private Vector3 spawnEnemyPosition() {
 		//randomize spawn position
 		int randomNr = Random.Range (-6, 6);
-		Vector3 spawnPos = new Vector3 (randomNr, 10f, 1f);
+		float randomNr2 = (float)Random.Range (0, 10);
+		Vector3 spawnPos = new Vector3 ((float)(randomNr + randomNr2/10f), 10f, 1f);
 		return spawnPos;
 	}
 
@@ -391,11 +394,16 @@ public class EnemiesScript : MonoBehaviour {
 		GameObject shadowObject;
 		Vector3 pos = new Vector3 (0f, 10f, 0f);
 
-		enemyObject = Instantiate (bossEnemeyObject, spawnEnemyPosition (), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
+		enemyObject = Instantiate (bossEnemeyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject.transform.localScale = new Vector3 (0.4f, -0.4f, 1f);
 
-		enemies[index] = new enemy (enemyObject, 10, enemyShadow);
+		enemies[index] = new enemy (enemyObject, 10, shadowObject);
+	}
+
+	public int getActiveEnemies()
+	{
+		return enemiesSpawned;
 	}
 
 

@@ -7,10 +7,11 @@ using System.Collections;
 
 public class levelSettings : MonoBehaviour {
 
-	private GameObject enemies;
+	public GameObject enemies;
 	public GameObject fader;
 //	public GameObject levelsCleared;
 	public GameObject holdTime;
+	private GameObject player;
 	public int gameSpeed;
 	public int level;
 	private float timer;
@@ -21,7 +22,8 @@ public class levelSettings : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+		player = GameObject.FindGameObjectWithTag ("Player");
 		enemies = GameObject.FindGameObjectWithTag ("EnemyHandler");
 		//set time of the level
 		if (level == 1 || level == 2 || level == 4 || level == 5)
@@ -33,7 +35,7 @@ public class levelSettings : MonoBehaviour {
 		else if (level == 7 || level == 9)
 			timer = 40f;
 		else if (level == 10 || level == 11)
-			timer = 50f;
+			timer = 120f;
 		else 
 			timer = 2f;
 
@@ -44,14 +46,25 @@ public class levelSettings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		print (timer);
 		if (level != 0 && holdTime.GetComponent<holdTime> ().startGame) {
+
+			//handle the timer, decreases until time = 1 and checks if all enemies are killed, then fades over to next level
 			if (!(timer <= 0f)) {
 
 				if(timer >=1f)
 					timer -= Time.deltaTime;
 
-				//Check if all enemies are dead before next level is loaded
-				if( timer <= 1f) {
+				if(level == 10 && player.GetComponent<shootingScript>().getIsBossKilled()) {
+
+					Application.LoadLevel(12);
+
+				}
+
+
+
+				//Check if all enemies are dead before next level is loaded TODO
+				if( timer <= 1f && enemies.GetComponent<EnemiesScript>().getActiveEnemies() == 0) {
 					fader.GetComponent<faderScript>().EndScene();
 					timer -= Time.deltaTime;
 				}

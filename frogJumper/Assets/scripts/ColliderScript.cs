@@ -8,12 +8,10 @@ using System.Collections;
 public class ColliderScript : MonoBehaviour {
 
 	private GameObject player;
-	private GameObject projectileShadow;
 
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag ("Player");
-//		projectileShadow = GameObject.FindGameObjectWithTag ("ProjectileShadow");
 	}
 
 	void OnCollisionEnter2D (Collision2D other) {
@@ -22,7 +20,6 @@ public class ColliderScript : MonoBehaviour {
 			Destroy(other.gameObject);
 			player.GetComponent<shootingScript>().setShooting(false);
 			Destroy (gameObject);
-//			Destroy (projectileShadow);
 		}
 	}
 }

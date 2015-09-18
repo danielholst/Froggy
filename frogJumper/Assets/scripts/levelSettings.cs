@@ -7,7 +7,7 @@ using System.Collections;
 
 public class levelSettings : MonoBehaviour {
 
-	public GameObject enemies;
+	private GameObject enemies;
 	public GameObject fader;
 //	public GameObject levelsCleared;
 	public GameObject holdTime;
@@ -18,7 +18,6 @@ public class levelSettings : MonoBehaviour {
 	private int stagesCleared;
 	private float lastSpawn;
 	public static int clearedLevels;
-
 
 	// Use this for initialization
 	void Start () {
@@ -46,8 +45,6 @@ public class levelSettings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		print (timer);
-
 		if (level != 0 && holdTime.GetComponent<holdTime> ().startGame) {
 
 			//handle the timer, decreases until time = 1 and checks if all enemies are killed, then fades over to next level
@@ -58,12 +55,12 @@ public class levelSettings : MonoBehaviour {
 
 				if(level == 10 && player.GetComponent<shootingScript>().getIsBossKilled()) {
 
-					fader.GetComponent<faderScript>().EndScene();
-					timer -= Time.deltaTime;
+					timer = 0.9f;
+					player.GetComponent<shootingScript>().bossIsKilled(false);
+
 				}
 
 				if( timer <= 1f && enemies.GetComponent<EnemiesScript>().getActiveEnemies() == 0) {
-
 					fader.GetComponent<faderScript>().EndScene();
 					timer -= Time.deltaTime;
 				}

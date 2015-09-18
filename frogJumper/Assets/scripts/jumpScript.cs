@@ -21,6 +21,12 @@ public class jumpScript : MonoBehaviour {
 	private Vector3 splashPos;
 	private bool setSplashPos;
 
+	//for sound
+	public AudioClip splashSound;
+	private AudioSource source;
+	private float volMin = 0.1f;
+	private float volMax = 0.2f;
+
 	// Use this for initialization
 	void Start () {
 
@@ -34,6 +40,7 @@ public class jumpScript : MonoBehaviour {
 		setSplashPos = false;
 		splashPos = new Vector3 (0f, 0f, 0f);
 		waterRing.transform.position = splashPos;
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -57,6 +64,10 @@ public class jumpScript : MonoBehaviour {
 			shadow.GetComponent<SpriteRenderer>().enabled = false;
 			growing = true;
 			if(!setSplashPos) {
+
+				//play spash when missed leaf
+				source.PlayOneShot(splashSound, 0.6f);
+
 				splashPos = transform.position;
 				setSplashPos = true;
 			}
@@ -87,9 +98,14 @@ public class jumpScript : MonoBehaviour {
 			if (scale > 2.0f) 
 				speed = -1.3f;
 
-			if (scale < 1.0f)
-				speed = 1.3f;
+			if (scale < 1.0f) {
 
+				//create splash sound
+				float vol = Random.Range(volMin, volMax);
+				source.PlayOneShot(splashSound, vol);
+
+				speed = 1.3f;
+			}
 			scale += speed * Time.deltaTime;
 
 			//scale frog so it loops like it jumps up

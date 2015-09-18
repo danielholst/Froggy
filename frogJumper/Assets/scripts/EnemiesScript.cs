@@ -156,16 +156,19 @@ public class EnemiesScript : MonoBehaviour {
 	private void level3(float time) {
 		
 		//spawn of enemy after 5 seconds
-		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
-			print ("Spawn 2 enemies after 5 sec ");
+		if ((int)time == 5f && enemies[0].getSpawned() == false) {
 			createSmallEnemy (0);
+		}
+
+		if ((int)time == 6f && enemies[1].getSpawned() == false) {
 			createSmallEnemy (1);
 		}
-		
-		//spawn of enemy after 15 seconds
-		if ((int)time == 13f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false ) {
-			print( "Spawn 2 enemies after 13 sec ");
+
+		if ((int)time == 13f && enemies[2].getSpawned() == false ) {
 			createSmallEnemy(2);
+		}
+
+		if ((int)time == 14f && enemies[3].getSpawned() == false ) {
 			createSmallEnemy(3);
 		}
 	}
@@ -174,23 +177,26 @@ public class EnemiesScript : MonoBehaviour {
 	private void level4(float time) {
 		
 		//spawn of enemy after 5 seconds
-		if ((int)time == 5f && enemies[0].getSpawned() == false && enemies[1].getSpawned() == false) {
-			print ("Spawn 2 enemies after 5 sec ");
+		if ((int)time == 5f && enemies[0].getSpawned() == false) {
 			createSmallEnemy (0);
+		}
+		if ((int)time == 6f && enemies[1].getSpawned() == false) {
 			createSmallEnemy (1);
 		}
 		
 		//spawn of enemy after 15 seconds
 		if ((int)time == 13f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false ) {
-			print( "Spawn 2 enemies after 13 sec ");
 			createSmallEnemy(2);
 			createSmallEnemy(3);
 		}
 
+		if ((int)time == 16f &&  enemies[4].getSpawned() == false ) {
+			createSmallEnemy(4);
+		}
+
 		//spawn of medium enemy after 20 seconds
-		if ((int)time == 20f && enemies[4].getSpawned() == false && enemies[4].getSpawned() == false ) {
-			print( "Spawn medium enemy after 20 sec ");
-			createMediumEnemy(4);
+		if ((int)time == 20f && enemies[5].getSpawned() == false ) {
+			createMediumEnemy(5);
 		}
 	}
 
@@ -521,6 +527,8 @@ public class EnemiesScript : MonoBehaviour {
 			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
 			                             playerPos.y - projectile.transform.position.y, 
 			                             1f);
+
+			shotDirection = 10 * shotDirection / shotDirection.magnitude;
 
 			//add small diff to shot
 			float diff = Random.Range (-3, 3) / 10;

@@ -87,7 +87,6 @@ public class shootingScript : MonoBehaviour {
 	public void increaseHitsOnBoss() 
 	{
 		hitsOnBoss++;
-		print (hitsOnBoss);
 	}
 
 	public int getHitsOnBoss()
@@ -95,9 +94,9 @@ public class shootingScript : MonoBehaviour {
 		return hitsOnBoss;
 	}
 
-	public void bossIsKilled()
+	public void bossIsKilled(bool x)
 	{
-		bossKilled = true;
+		bossKilled = x;
 	}
 
 	public bool getIsBossKilled()

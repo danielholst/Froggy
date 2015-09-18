@@ -9,6 +9,7 @@ public class shootingScript : MonoBehaviour {
 
 	public GameObject projectile;
 	public GameObject projectileShadow;
+
 	private GameObject holdTime;
 	private float shootingSpeed;
 	private GameObject instantiatedProjectile;
@@ -16,6 +17,12 @@ public class shootingScript : MonoBehaviour {
 	private bool shooting;
 	private int hitsOnBoss;
 	private bool bossKilled;
+
+	//for sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volMin = 0.2f;
+	private float volMax = 0.4f;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +34,8 @@ public class shootingScript : MonoBehaviour {
 		shooting = false;
 		hitsOnBoss = 0;
 		bossKilled = false;
+
+		source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -38,6 +47,10 @@ public class shootingScript : MonoBehaviour {
 
 		//if space is pressed a projectile is launched from the frog
 		if (Input.GetKeyUp ("space") && holdTime.GetComponent<holdTime> ().startGame && !(shooting) && !GetComponent<lifeScript>().sinking) {
+
+			//create shoot sound
+			float vol = Random.Range(volMin, volMax);
+			source.PlayOneShot(shootSound, vol);
 
 			shooting = true;
 			projectile.GetComponent<Renderer> ().enabled = true;

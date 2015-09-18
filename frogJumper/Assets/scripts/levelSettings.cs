@@ -46,7 +46,8 @@ public class levelSettings : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print (timer);
+//		print (timer);
+
 		if (level != 0 && holdTime.GetComponent<holdTime> ().startGame) {
 
 			//handle the timer, decreases until time = 1 and checks if all enemies are killed, then fades over to next level
@@ -57,23 +58,21 @@ public class levelSettings : MonoBehaviour {
 
 				if(level == 10 && player.GetComponent<shootingScript>().getIsBossKilled()) {
 
-					Application.LoadLevel(12);
-
+					fader.GetComponent<faderScript>().EndScene();
+					timer -= Time.deltaTime;
 				}
 
-
-
-				//Check if all enemies are dead before next level is loaded TODO
 				if( timer <= 1f && enemies.GetComponent<EnemiesScript>().getActiveEnemies() == 0) {
+
 					fader.GetComponent<faderScript>().EndScene();
 					timer -= Time.deltaTime;
 				}
 
 			}
+
+			//fade out level,then load and fade in next level
 			else {
-				//reached end of level
-				//fade out level
-				//then load and fade in next level
+
 //				GetComponent<levelsCleared> ().addClearedLevels();
 //				print ("levels cleared = " + GetComponent<levelsCleared> ().getClearedLevels());
 				clearedLevels++;

@@ -24,6 +24,12 @@ public class EnemiesScript : MonoBehaviour {
 	private int enemyCounter;
 	private int enemiesSpawned;
 
+	//for sound
+	public AudioClip shootSound;
+	private AudioSource source;
+	private float volMin = 0.1f;
+	private float volMax = 0.2f;
+	
 	// Use this for initialization
 	void Start () {
 
@@ -38,6 +44,7 @@ public class EnemiesScript : MonoBehaviour {
 			enemyShots[i] = new enemyProjectile(enemyProjectileObject, projectileShadowObject);
 		}
 
+		source = GetComponent<AudioSource>();
 		timer = 0f;
 
 		//set time of the level
@@ -86,8 +93,11 @@ public class EnemiesScript : MonoBehaviour {
 
 				//Enemy shoot
 				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
-					print ("enemyCounter = " + enemyCounter);
-					print ("enemiesSpawned = " + enemiesSpawned);
+
+					//create shoot sound
+					float vol = Random.Range(volMin, volMax);
+					source.PlayOneShot(shootSound, vol);
+
 					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject, projectileShadowObject);
 				}
 			}

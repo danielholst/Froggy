@@ -21,6 +21,7 @@ public class colliderBossScript : MonoBehaviour {
 			player.GetComponent<shootingScript> ().setShooting (false);
 			
 			if (player.GetComponent<shootingScript>().getHitsOnBoss() == 10) {
+				player.GetComponent<shootingScript>().bossIsKilled();
 				Destroy (other.gameObject);
 			} 
 			else {

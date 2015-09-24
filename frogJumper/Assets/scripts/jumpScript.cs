@@ -49,7 +49,7 @@ public class jumpScript : MonoBehaviour {
 		//handle drag back after collision
 		if(transform.position.y < 0f)
 		{
-			transform.position += new Vector3(0f, 0.002f, 0f);
+			transform.position += new Vector3(0f, 0.003f, 0f);
 		}
 
 		waterRing.GetComponent<SpriteRenderer> ().color = colorWaterRing;
@@ -66,7 +66,7 @@ public class jumpScript : MonoBehaviour {
 			if(!setSplashPos) {
 
 				//play spash when missed leaf
-				source.PlayOneShot(splashSound, 0.6f);
+				source.PlayOneShot(splashSound, 0.5f);
 
 				splashPos = transform.position;
 				setSplashPos = true;
@@ -111,7 +111,6 @@ public class jumpScript : MonoBehaviour {
 			//scale frog so it loops like it jumps up
 			scaleVec = new Vector2 (0.4f * scale, 0.6f * scale);
 			transform.localScale = scaleVec;
-//			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f);
 			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f + transform.position.y);
 
 		}	

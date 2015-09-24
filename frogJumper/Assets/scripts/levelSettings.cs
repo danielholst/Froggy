@@ -59,8 +59,12 @@ public class levelSettings : MonoBehaviour {
 					player.GetComponent<shootingScript>().bossIsKilled(false);
 
 				}
+				if( level == 1 && timer <= 1f) {
+					fader.GetComponent<faderScript>().EndScene();
+					timer -= Time.deltaTime;
+				}
 
-				if( timer <= 1f && enemies.GetComponent<EnemiesScript>().getActiveEnemies() == 0) {
+				if( level > 1 && timer <= 1f && enemies.GetComponent<EnemiesScript>().getActiveEnemies() == 0) {
 					fader.GetComponent<faderScript>().EndScene();
 					timer -= Time.deltaTime;
 				}

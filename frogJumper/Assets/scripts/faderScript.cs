@@ -10,11 +10,11 @@ public class faderScript : MonoBehaviour
 	
 	void Awake ()
 	{
+		sceneStarting = true;
 		guiTexture = GetComponent<GUITexture> ();
 		// Set the texture so that it is the the size of the screen and covers it.
 		guiTexture.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
 	}
-
 	
 	void Update ()
 	{
@@ -35,7 +35,7 @@ public class faderScript : MonoBehaviour
 	void FadeToBlack ()
 	{
 		// Lerp the colour of the texture between itself and black.
-		guiTexture.color = Color.Lerp(guiTexture.color, Color.black, fadeSpeed * Time.deltaTime);
+		guiTexture.color = Color.Lerp(guiTexture.color, Color.black, fadeSpeed * Time.fixedDeltaTime	);
 	}
 	
 	
@@ -43,7 +43,7 @@ public class faderScript : MonoBehaviour
 	{
 		// Fade the texture to clear.
 		FadeToClear();
-		
+
 		// If the texture is almost clear...
 		if(guiTexture.color.a <= 0.05f)
 		{
@@ -68,7 +68,5 @@ public class faderScript : MonoBehaviour
 		 //If the screen is almost black...
 		if (guiTexture.color.a >= 0.95f)
 			guiTexture.color = Color.clear;
-			// ... reload the level.
-//			Application.LoadLevel(0);
 	}
 }

@@ -9,7 +9,6 @@ public class levelSettings : MonoBehaviour {
 
 	private GameObject enemies;
 	public GameObject fader;
-//	public GameObject levelsCleared;
 	public GameObject holdTime;
 	private GameObject player;
 	public int gameSpeed;
@@ -24,6 +23,7 @@ public class levelSettings : MonoBehaviour {
 
 		player = GameObject.FindGameObjectWithTag ("Player");
 		enemies = GameObject.FindGameObjectWithTag ("EnemyHandler");
+
 		//set time of the level
 		if (level == 1 || level == 2 || level == 4 || level == 5)
 			timer = 30f;
@@ -74,9 +74,6 @@ public class levelSettings : MonoBehaviour {
 			//fade out level,then load and fade in next level
 			else {
 
-//				GetComponent<levelsCleared> ().addClearedLevels();
-//				print ("levels cleared = " + GetComponent<levelsCleared> ().getClearedLevels());
-				clearedLevels++;
 				Application.LoadLevel(level+2);
 			}
 		}

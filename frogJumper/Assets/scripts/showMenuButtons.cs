@@ -37,6 +37,7 @@ public class showMenuButtons : MonoBehaviour {
 			if (GUI.Button (new Rect (Screen.width/16*6, Screen.height/8*5, 200, 100), "Main menu")) {
 
 				Application.LoadLevel(0);
+				Time.timeScale = 1.0f;
 			}
 
 		}

@@ -8,6 +8,7 @@ using System.Collections;
 public class pausMenuScript : MonoBehaviour {
 
 	public GameObject EventHandler;
+	private GameObject frog;
 	public bool paused;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class pausMenuScript : MonoBehaviour {
 		paused = false;
 
 		GetComponent<Renderer> ().enabled = false;
-
+		frog = GameObject.FindGameObjectWithTag ("Player");
 
 	}
 	
@@ -23,13 +24,12 @@ public class pausMenuScript : MonoBehaviour {
 	void Update () {
 
 		//show texture for paus menu
-		if (Input.GetKeyDown (KeyCode.Escape) && EventHandler.GetComponent<holdTime> ().startGame) {
+		if (Input.GetKeyDown (KeyCode.Escape) && EventHandler.GetComponent<holdTime> ().startGame && !frog.GetComponent<lifeScript>().sinking ) {
 			print ("PAUS");
 
 			if (!paused) 
 			{
 				GetComponent<Renderer> ().enabled = true;
-//				print (menuTexture.transform.position);
 				Time.timeScale = 0.0f;
 				paused = true;
 			}
@@ -38,17 +38,6 @@ public class pausMenuScript : MonoBehaviour {
 				resume();
 			}
 		}
-
-			//if return to game is presses
-//			paused = false;
-
-			//if go back to main menu us presses
-//			Application.LoadLevel (0);
-
-			//if exit game is pressed
-//			Application.Quit();
-		
-
 	}
 
 	public void resume() {

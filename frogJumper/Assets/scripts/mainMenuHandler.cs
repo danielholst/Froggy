@@ -16,7 +16,7 @@ public class mainMenuHandler : MonoBehaviour {
 
 		}
 		
-		if (GUI.Button (new Rect (Screen.width/10*6, Screen.height/10*4, Screen.width/20*5, Screen.height/10*4), " ")) {
+		if (GUI.Button (new Rect (Screen.width/10*6, Screen.height/10*4, Screen.width/20*6, Screen.height/10*4), " ")) {
 			Application.LoadLevel(1);
 		}
 	}

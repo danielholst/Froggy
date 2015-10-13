@@ -87,18 +87,27 @@ public class EnemiesScript : MonoBehaviour {
 				//Move enemies
 				enemies[i].movement();
 
+				//if it is a medium sized bug mov sideways
+				if(enemies[i].getEnemyHealth() == 2)
+					enemies[i].scale();
+
 				//handle nr of spawned enemies
 				if(enemies[i].getSpawned())
 					enemiesSpawned++;
 
 				//Enemy shoot
-				if (enemies[i].getEnemyObject().transform.position.y < 8f && !enemyShots[i].getIsShot()) {
+				if (enemies[i].getEnemyObject().transform.position.y < 8f)
+				{
+					if(!enemyShots[i].getIsShot())
+					{
 
-					//create shoot sound
-					float vol = Random.Range(volMin, volMax);
-					source.PlayOneShot(shootSound, vol);
+						//create shoot sound
+						float vol = Random.Range(volMin, volMax);
+						source.PlayOneShot(shootSound, vol);
 
-					enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject, projectileShadowObject);
+						enemyShots[i].shoot (enemies[i].getEnemyObject(), player.transform.position, enemyProjectileObject, projectileShadowObject);
+					}
+
 				}
 			}
 			//to destroy enemy shadows after the enemy is killed
@@ -431,6 +440,10 @@ public class EnemiesScript : MonoBehaviour {
 		private int healthOfEnemy;
 		private bool enemySpawned;
 		private GameObject shadow;
+		private bool growing;
+		private bool goingLeft;
+		private int counter;
+		private int counter2;
 		
 		public enemy()
 		{
@@ -438,6 +451,10 @@ public class EnemiesScript : MonoBehaviour {
 			healthOfEnemy = 0;
 			enemySpawned = false;
 			shadow = null;
+			growing = true;
+			goingLeft = true;
+			counter = 0;
+			counter2 = 0;
 			
 		}
 		
@@ -447,6 +464,56 @@ public class EnemiesScript : MonoBehaviour {
 			healthOfEnemy = health;
 			enemySpawned = true;
 			shadow = shadowObject;
+			growing = true;
+			counter = 0;
+			counter2 = 0;
+
+			if(Random.Range (-1, 1) < 0)
+				goingLeft = false;
+			else 
+				goingLeft = true;
+		}
+
+		public void scale()
+		{
+			if (goingLeft == true) {
+				typeOfEnemy.transform.position += new Vector3 (0.01f, 0f, 0f);
+				shadow.transform.position += new Vector3 (0.01f, 0f, 0f);
+				counter2++;
+				if (counter2 == 100) {
+					counter2 = 0;
+					goingLeft = false;
+				}
+			}
+			else if(goingLeft == false)
+			{
+				typeOfEnemy.transform.position += new Vector3 (-0.01f, 0f, 0f);
+				shadow.transform.position += new Vector3 (-0.01f, 0f, 0f);
+				counter2++;
+				if (counter2 == 100) {
+					counter2 = 0;
+					goingLeft = true;
+				}
+			}
+			if (growing == true) {
+				counter++;
+				typeOfEnemy.transform.localScale += new Vector3 (0.001f, -0.001f, 0f);
+				shadow.transform.localScale += new Vector3 (0.0001f, -0.0001f, 0f);
+
+				if (counter == 40) {
+					counter = 0;
+					growing = false;
+				}
+			} else if (growing == false) {
+				counter++;
+				typeOfEnemy.transform.localScale += new Vector3 (-0.001f, 0.001f, 0f);
+				shadow.transform.localScale += new Vector3 (-0.0001f, 0.0001f, 0f);
+				if (counter == 40) {
+					counter = 0;
+					growing = true;
+				}
+			}
+
 		}
 		
 		//movement for the enemy so it moves to top of screen
@@ -490,7 +557,6 @@ public class EnemiesScript : MonoBehaviour {
 		{
 			enemySpawned = spawned;
 		}
-
 	}
 	
 	//class for the enemies projectiles

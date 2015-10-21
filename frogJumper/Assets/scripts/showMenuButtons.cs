@@ -20,7 +20,7 @@ public class showMenuButtons : MonoBehaviour {
 		resumeButton.onHover.textColor = Color.white;
 		resumeButton.active.textColor = Color.black;
 		resumeButton.normal.textColor = Color.Lerp(Color.red, Color.yellow, 0.5f);
-		
+
 		GUIStyle mainmenuButton = new GUIStyle("Main menu");
 		mainmenuButton.fontSize = Mathf.RoundToInt (70f * Screen.width / (1200 * 1.0f));
 		resumeButton.onHover.textColor = Color.white;
@@ -28,7 +28,7 @@ public class showMenuButtons : MonoBehaviour {
 
 		//check if game is paused
 		if (pausmenu.GetComponent<pausMenuScript> ().paused) {
-		
+
 			if (GUI.Button (new Rect (Screen.width/16*6+20, Screen.height/16*7, 300, 100), "Resume", resumeButton)) {
 
 				pausmenu.GetComponent<pausMenuScript>().resume();

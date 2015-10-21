@@ -42,7 +42,7 @@ public class jumpScript : MonoBehaviour {
 		waterRing.transform.position = splashPos;
 		source = GetComponent<AudioSource>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -51,7 +51,10 @@ public class jumpScript : MonoBehaviour {
 		{
 			transform.position += new Vector3(0f, 0.003f, 0f);
 		}
-
+		if(transform.position.y > 0f)
+		{
+			transform.position += new Vector3(0f, -0.003f, 0f);
+		}
 		waterRing.GetComponent<SpriteRenderer> ().color = colorWaterRing;
 
 		waterRing.transform.localScale = new Vector3(scaleWaterRing, scaleWaterRing, 1f);
@@ -74,7 +77,7 @@ public class jumpScript : MonoBehaviour {
 
 		}
 
-		//prevent frog to jump of screen 
+		//prevent frog to jump of screen
 		if (transform.position.x > 9f)
 			transform.position = new Vector3 (9f, 0f, 1f);
 		if (transform.position.x < -9f)
@@ -84,7 +87,7 @@ public class jumpScript : MonoBehaviour {
 		if (growing) {
 			scaleWaterRing += 0.01f;
 			colorWaterRing.a -= 0.01f;
-			
+
 			if(scaleWaterRing > 2.5f) {
 				growing = false;
 				scaleWaterRing = 0.5f;
@@ -95,7 +98,7 @@ public class jumpScript : MonoBehaviour {
 		//else frog is jumping
 		if (EventHandler.GetComponent<holdTime>().startGame && !GetComponent<lifeScript>().sinking) {
 			//set interval, differ between max and min
-			if (scale > 2.0f) 
+			if (scale > 2.0f)
 				speed = -1.3f;
 
 			if (scale < 1.0f) {
@@ -113,6 +116,6 @@ public class jumpScript : MonoBehaviour {
 			transform.localScale = scaleVec;
 			shadow.position = new Vector2 (transform.position.x, -3f * scaleVec.y + 1.7f + transform.position.y);
 
-		}	
+		}
 	}
 }

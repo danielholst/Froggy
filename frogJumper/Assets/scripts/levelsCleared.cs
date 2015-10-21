@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//NOT USED
+
 public class levelsCleared : MonoBehaviour {
 
 	public int clearedLevels;

@@ -7,14 +7,13 @@ using System.Collections;
 
 public class holdTime : MonoBehaviour {
 
-	public bool startGame; 
-	
+	public bool startGame;
+
 	IEnumerator Start()
 	{
 		startGame = false;
 		// Start function WaitAndPrint as a coroutine
 		yield return StartCoroutine("WaitAndPrint");
-//		print("Done " + Time.time);
 	}
 
 	IEnumerator WaitAndPrint()

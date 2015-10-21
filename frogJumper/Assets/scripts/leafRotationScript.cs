@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * Class to handle rotation of the leaves
-**/ 
+**/
 
 public class leafRotationScript : MonoBehaviour {
 
@@ -16,11 +16,11 @@ public class leafRotationScript : MonoBehaviour {
 		//randomize start rotation
 		transform.rotation = Quaternion.Euler (0f, 0f,Random.Range(1,360));
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
 		transform.Rotate (new Vector3 (0f, 0f, rotationspeed));
-	
+
 	}
 }

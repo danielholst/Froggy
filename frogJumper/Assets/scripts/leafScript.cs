@@ -12,7 +12,6 @@ public class leafScript : MonoBehaviour {
 	private Vector3 movementVec;
 	public GameObject EventHandler;
 	public int level;
-	//private float prevSpawn;
 	public int counter;
 	private GameObject settings;
 
@@ -22,10 +21,9 @@ public class leafScript : MonoBehaviour {
 		settings = GameObject.FindGameObjectWithTag ("Settings");
 		movementVec = new Vector3 (0f, -2.54f, 0f);
 		rotationspeed = 10f;
-		//prevSpawn = 0f;
 		counter = 0;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -48,8 +46,7 @@ public class leafScript : MonoBehaviour {
 		float randomNr = randomFunction (prevSpawn);
 		transform.position = new Vector3 (randomNr, 11f, 0f);
 
-		//randomize start rotation
-		transform.rotation = Quaternion.Euler (0f, 0f,Random.Range(1,360)); // 0f,1f, Random.Range(1, 360));
+		transform.rotation = Quaternion.Euler (0f, 0f,Random.Range(1,360));
 
 		return randomNr;
 	}

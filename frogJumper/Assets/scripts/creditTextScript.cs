@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+* class to handle movement of end credits
+**/
+
 public class creditTextScript : MonoBehaviour {
 
 	private Vector3 movVec;
@@ -8,7 +12,7 @@ public class creditTextScript : MonoBehaviour {
 	void Start () {
 		movVec = new Vector3 (0f, 0.02f, 0f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 

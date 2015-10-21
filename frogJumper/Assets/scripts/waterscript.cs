@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/** 
+/**
  * Function to handle movement of the water
 **/
 
@@ -13,14 +13,15 @@ public class waterscript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (waterSpeed == 0)
-			waterSpeed = -2.66f;	
+			waterSpeed = -2.66f;
 		movementVec = new Vector3 (0f, waterSpeed, 0f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		transform.position += movementVec* Time.deltaTime;
 
+		//respawn water texture at top when reached below screen
 		if (transform.position.y < -10f) {
 			transform.position = new Vector3 (0f, 14f, 0f);
 		}

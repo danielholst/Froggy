@@ -37,7 +37,7 @@ public class shootingScript : MonoBehaviour {
 
 		source = GetComponent<AudioSource>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -84,7 +84,7 @@ public class shootingScript : MonoBehaviour {
 	}
 
 	//for boss at last level
-	public void increaseHitsOnBoss() 
+	public void increaseHitsOnBoss()
 	{
 		hitsOnBoss++;
 	}

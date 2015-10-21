@@ -2,7 +2,7 @@
 using System.Collections;
 
 /**
- * Function to handle if the frog lands on leaves or in the water 
+ * Function to handle if the frog lands on leaves or in the water
  **/
 
 public class lifeScript : MonoBehaviour {
@@ -37,7 +37,7 @@ public class lifeScript : MonoBehaviour {
 			widthOfLeaf = 1f;
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -64,13 +64,13 @@ public class lifeScript : MonoBehaviour {
 
 			//check if frog is on leaf 2
 			else if (frogPosition.x < (leaf2.position.x + widthOfLeaf) && frogPosition.x > (leaf2.position.x - widthOfLeaf) && frogPosition.y < (leaf2.position.y + widthOfLeaf) && frogPosition.y > (leaf2.position.y - widthOfLeaf)) {
-			
+
 				//on leaf 2
 			}
 
 			//check if frog is on leaf 3
 			else if (frogPosition.x < (leaf3.position.x + widthOfLeaf) && frogPosition.x > (leaf3.position.x - widthOfLeaf) && frogPosition.y < (leaf3.position.y + widthOfLeaf) && frogPosition.y > (leaf3.position.y - widthOfLeaf)) {
-			
+
 				//on leaf 3
 			}
 			//check if frog is on leaf 4
@@ -84,5 +84,4 @@ public class lifeScript : MonoBehaviour {
 
 		}
 	}
-	
 }

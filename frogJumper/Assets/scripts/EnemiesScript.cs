@@ -29,7 +29,7 @@ public class EnemiesScript : MonoBehaviour {
 	private AudioSource source;
 	private float volMin = 0.1f;
 	private float volMax = 0.2f;
-	
+
 	// Use this for initialization
 	void Start () {
 
@@ -61,7 +61,7 @@ public class EnemiesScript : MonoBehaviour {
 			endTime = 25f;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -150,21 +150,18 @@ public class EnemiesScript : MonoBehaviour {
 
 		//spawn of enemy after 5 seconds
 		if ((int)time == 5f && enemies[0].getSpawned() == false) {
-			print ("Spawn enemy after 5 sec ");
 			createSmallEnemy (0);
 		}
-	
+
 		//spawn of enemy after 15 seconds
 		if ((int)time == 15f && enemies[1].getSpawned() == false ) {
-			print( "Spawn enemy after 15 sec ");
 			createSmallEnemy(1);
 		}
 	}
 
 	//spawns on level 3
 	private void level3(float time) {
-		
-		//spawn of enemy after 5 seconds
+
 		if ((int)time == 5f && enemies[0].getSpawned() == false) {
 			createSmallEnemy (0);
 		}
@@ -184,16 +181,14 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 4
 	private void level4(float time) {
-		
-		//spawn of enemy after 5 seconds
+
 		if ((int)time == 5f && enemies[0].getSpawned() == false) {
 			createSmallEnemy (0);
 		}
 		if ((int)time == 6f && enemies[1].getSpawned() == false) {
 			createSmallEnemy (1);
 		}
-		
-		//spawn of enemy after 15 seconds
+
 		if ((int)time == 13f && enemies[2].getSpawned() == false && enemies[3].getSpawned() == false ) {
 			createSmallEnemy(2);
 			createSmallEnemy(3);
@@ -203,7 +198,6 @@ public class EnemiesScript : MonoBehaviour {
 			createSmallEnemy(4);
 		}
 
-		//spawn of medium enemy after 20 seconds
 		if ((int)time == 20f && enemies[5].getSpawned() == false ) {
 			createMediumEnemy(5);
 		}
@@ -211,14 +205,11 @@ public class EnemiesScript : MonoBehaviour {
 
 	//spawns on level 5
 	private void level5(float time) {
-		
-		//spawn of enemy after 5 seconds
+
 		if ((int)time == 5f && enemies[0].getSpawned() == false) {
-			print ("Spawn 2 enemies after 5 sec ");
 			createSmallEnemy (0);
 		}
 
-		//spawn after 7 seconds
 		if((int)time == 7f && enemies[1].getSpawned() == false) {
 			createMediumEnemy(1);
 		}
@@ -226,12 +217,11 @@ public class EnemiesScript : MonoBehaviour {
 		if((int)time == 11f && enemies[2].getSpawned() == false) {
 			createSmallEnemy(2);
 		}
-		//spawn of enemy after 15 seconds
+
 		if ((int)time == 15f && enemies[3].getSpawned() == false) {
 			createSmallEnemy(3);
 		}
-		
-		//spawn of medium enemy after 20 seconds
+
 		if ((int)time == 20f && enemies[4].getSpawned() == false) {
 			createMediumEnemy(4);
 		}
@@ -240,15 +230,12 @@ public class EnemiesScript : MonoBehaviour {
 	//spawns on level 6
 	private void level6(float time) {
 
-		//spawn after 7 seconds
 		if ((int)time == 7f && enemies [0].getSpawned () == false) {
 			createSmallEnemy (0);
 		}
 		if((int)time == 7f && enemies[1].getSpawned() == false) {
 			createSmallEnemy(1);
 		}
-		
-		//spawn of enemy after 13 seconds
 		if((int)time == 13f && enemies[2].getSpawned() == false) {
 			createMediumEnemy(2);
 		}
@@ -263,7 +250,6 @@ public class EnemiesScript : MonoBehaviour {
 	//spawns on level 7
 	private void level7(float time) {
 
-		//spawn after 7 seconds
 		if ((int)time == 7f && enemies [0].getSpawned () == false) {
 			createSmallEnemy (0);
 		}
@@ -293,7 +279,6 @@ public class EnemiesScript : MonoBehaviour {
 	//spawns on level 8
 	private void level8(float time) {
 
-		//spawn after 7 seconds
 		if ((int)time == 7f && enemies [0].getSpawned () == false) {
 			createMediumEnemy (0);
 		}
@@ -370,15 +355,13 @@ public class EnemiesScript : MonoBehaviour {
 
 		//Spawn last boss
 		if ((int)time == 35f && enemies[6].getSpawned() == false) {
-			print ("Booss spawned");
 			createBossEnemy(6);
 		}
-		
 	}
 
 	//function to get a random spawn position for enemy
 	private Vector3 spawnEnemyPosition() {
-		//randomize spawn position
+
 		int randomNr = Random.Range (-6, 6);
 		float randomNr2 = (float)Random.Range (0, 10);
 		Vector3 spawnPos = new Vector3 ((float)(randomNr + randomNr2/10f), 10f, 1f);
@@ -388,7 +371,7 @@ public class EnemiesScript : MonoBehaviour {
 
 	//create a new small enemy
 	private void createSmallEnemy(int index) {
-	
+
 		GameObject enemyObject;
 		GameObject shadowObject;
 		Vector3 pos = spawnEnemyPosition ();
@@ -401,7 +384,7 @@ public class EnemiesScript : MonoBehaviour {
 
 	//create a new medium enemy
 	private void createMediumEnemy(int index) {
-		
+
 		GameObject enemyObject;
 		GameObject shadowObject;
 		Vector3 pos = spawnEnemyPosition ();
@@ -409,7 +392,7 @@ public class EnemiesScript : MonoBehaviour {
 		enemyObject = Instantiate (mediumEnemyObject, pos, new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject = Instantiate (enemyShadow, new Vector3(pos.x, pos.y - 0.6f, 1f), new Quaternion (0f, 0f, 0f, 1f)) as GameObject;
 		shadowObject.transform.localScale = new Vector3 (0.2f, -0.2f, 1f);
-		
+
 		enemies [index] = new enemy (enemyObject, 2, shadowObject);
 	}
 
@@ -433,7 +416,7 @@ public class EnemiesScript : MonoBehaviour {
 
 
 	//class for enemy bugs
-	public class enemy 
+	public class enemy
 	{
 		private Vector3 movVec = new Vector3 (0f, 0.01f, 0f);
 		private GameObject typeOfEnemy;
@@ -444,7 +427,7 @@ public class EnemiesScript : MonoBehaviour {
 		private bool goingLeft;
 		private int counter;
 		private int counter2;
-		
+
 		public enemy()
 		{
 			typeOfEnemy = null;
@@ -455,9 +438,9 @@ public class EnemiesScript : MonoBehaviour {
 			goingLeft = true;
 			counter = 0;
 			counter2 = 0;
-			
+
 		}
-		
+
 		public enemy(GameObject type, int health, GameObject shadowObject)
 		{
 			typeOfEnemy = type;
@@ -470,7 +453,7 @@ public class EnemiesScript : MonoBehaviour {
 
 			if(Random.Range (-1, 1) < 0)
 				goingLeft = false;
-			else 
+			else
 				goingLeft = true;
 		}
 
@@ -515,7 +498,7 @@ public class EnemiesScript : MonoBehaviour {
 			}
 
 		}
-		
+
 		//movement for the enemy so it moves to top of screen
 		public void movement()
 		{
@@ -558,7 +541,7 @@ public class EnemiesScript : MonoBehaviour {
 			enemySpawned = spawned;
 		}
 	}
-	
+
 	//class for the enemies projectiles
 	public class enemyProjectile
 	{
@@ -588,10 +571,10 @@ public class EnemiesScript : MonoBehaviour {
 			Vector3 projectileSpawnPos = new Vector3 (enemy.transform.position.x, enemy.transform.position.y - 0.1f, 1f);
 			projectile = Instantiate(enemyProjectile, projectileSpawnPos, enemy.transform.rotation) as GameObject;
 			projectileShadow = Instantiate(projectileShadowObj	,projectileSpawnPos, enemy.transform.rotation) as GameObject;
-			
+
 			//get vector towards frog
-			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x, 
-			                             playerPos.y - projectile.transform.position.y, 
+			shotDirection = new Vector3(playerPos.x - projectile.transform.position.x,
+			                             playerPos.y - projectile.transform.position.y,
 			                             1f);
 
 			shotDirection = 10 * shotDirection / shotDirection.magnitude;
@@ -632,5 +615,4 @@ public class EnemiesScript : MonoBehaviour {
 		}
 
 	}
-
 }

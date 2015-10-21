@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+* Class to handle input and movement of the frog
+**/
 public class movementScript : MonoBehaviour {
 
 	private Vector2 forceVec;
@@ -12,7 +15,7 @@ public class movementScript : MonoBehaviour {
 
 		forceVec = new Vector2 (15f, 0f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 

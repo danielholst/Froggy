@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+* Handles the water animation when frog lands on leaves
+**/
+
 public class waterRingsScript : MonoBehaviour {
 
 	public int level;
@@ -24,14 +28,14 @@ public class waterRingsScript : MonoBehaviour {
 
 		else if (level == 2)
 			widthOfLeaf = 1.4f;
-		
+
 		if (level == 3)
 			widthOfLeaf = 1.2f;
-		
+
 		else
 			widthOfLeaf = 1f;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -47,7 +51,7 @@ public class waterRingsScript : MonoBehaviour {
 		}
 
 		if (growing) {
-//			print ("alpha = " + colorWaterRing.a);
+
 			scale += 1.2f * Time.deltaTime;
 			colorLeaf.a -= 0.7f * Time.deltaTime;
 			colorWaterRing.a -= 0.7f * Time.deltaTime;
@@ -55,13 +59,11 @@ public class waterRingsScript : MonoBehaviour {
 			if(scale > 2.5f) {
 				growing = false;
 				scale = 0.5f;
-//				colorWaterRing.a = 1f;
-//				colorLeaf.a = 1f;
 			}
 		}
 
 		//if leaf position.y = 0 (when frog lands on leaf) the scaling starts of the water rings
-		if (leaf.transform.position.y >= 0.2f && leaf.transform.position.y <= 0.3f 
+		if (leaf.transform.position.y >= 0.2f && leaf.transform.position.y <= 0.3f
 		    && frog.transform.position.x < (leaf.transform.position.x + widthOfLeaf + 0.5f) && frog.transform.position.x > (leaf.transform.position.x - (widthOfLeaf + 0.5f))) {
 			growing = true;
 		}

@@ -12,14 +12,14 @@ public class pausMenuScript : MonoBehaviour {
 	public bool paused;
 	// Use this for initialization
 	void Start () {
-	
+
 		paused = false;
 
 		GetComponent<Renderer> ().enabled = false;
 		frog = GameObject.FindGameObjectWithTag ("Player");
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -27,7 +27,7 @@ public class pausMenuScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Escape) && EventHandler.GetComponent<holdTime> ().startGame && !frog.GetComponent<lifeScript>().sinking ) {
 			print ("PAUS");
 
-			if (!paused) 
+			if (!paused)
 			{
 				GetComponent<Renderer> ().enabled = true;
 				Time.timeScale = 0.0f;
